@@ -1,8 +1,6 @@
-import 'package:betta_fish/page/components/CardRow.dart';
 import 'package:betta_fish/page/page/home.dart';
 import 'package:betta_fish/page/proses%20pemesanan/transaksi.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class CardNavbar extends StatefulWidget {
   @override
@@ -13,7 +11,7 @@ class _CardNavbarState extends State<CardNavbar> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 100,
+      width: MediaQuery.of(context).size.width,
       height: 80,
       decoration: BoxDecoration(
         color: Color(0xFFCCBCBC),
@@ -83,7 +81,7 @@ class _CardNavbarState extends State<CardNavbar> {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => Transaksi()),
+                MaterialPageRoute(builder: (context) => TransaksiPage()),
               );
             },
             

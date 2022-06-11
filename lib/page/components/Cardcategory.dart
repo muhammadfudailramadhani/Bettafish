@@ -1,7 +1,5 @@
-import 'package:betta_fish/page/components/CardRow.dart';
 import 'package:betta_fish/page/page/category.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 //
 
 //

@@ -1,7 +1,7 @@
+import 'package:betta_fish/page/page/Search.dart';
 import 'package:betta_fish/page/page/home.dart';
 import 'package:betta_fish/page/proses%20pemesanan/keranjang.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class CardAppbar extends StatefulWidget {
   @override
@@ -9,6 +9,7 @@ class CardAppbar extends StatefulWidget {
 }
 
 class _CardAppbarState extends State<CardAppbar> {
+  bool show = false;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -43,25 +44,57 @@ class _CardAppbarState extends State<CardAppbar> {
                 ),
               )),
         ),
-        Align(
-          alignment: AlignmentDirectional(-1, -0.9),
-          child: Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(180, 12, 0, 0),
-            child: Container(
-              width: 25,
-              height: 25,
-              decoration: BoxDecoration(
-                color: Color(0x00BB3F3F),
-                image: DecorationImage(
-                  fit: BoxFit.cover,
-                  image: Image.asset(
-                    'assets/images/search.png',
-                  ).image,
+        show
+            ? Row(
+                children: [
+                  Container(
+                    width: 320,
+                    child: TextField(
+                      onSubmitted: (value) {
+                        if (value.isEmpty) {
+                          return;
+                        } else {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => Search(data: value,)));
+                        }
+                      },
+                    ),
+                  ),
+                  IconButton(
+                      onPressed: () {
+                        setState(() {
+                          show = false;
+                        });
+                      },
+                      icon: Icon(Icons.cancel))
+                ],
+              )
+            : InkWell(
+                onTap: () {
+                  setState(() {
+                    show = true;
+                  });
+                },
+                child: Align(
+                  alignment: AlignmentDirectional(-1, -0.9),
+                  child: Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(340, 12, 0, 0),
+                    child: Container(
+                      width: 40,
+                      height: 40,
+                      decoration: BoxDecoration(
+                        color: Color(0x00BB3F3F),
+                        image: DecorationImage(
+                          fit: BoxFit.cover,
+                          image: Image.asset(
+                            'assets/images/search.png',
+                          ).image,
+                        ),
+                      ),
+                    ),
+                  ),
                 ),
               ),
-            ),
-          ),
-        ),
         Align(
           alignment: AlignmentDirectional(-1, -0.9),
           child: Padding(

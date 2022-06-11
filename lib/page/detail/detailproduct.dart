@@ -1,9 +1,11 @@
+import 'package:betta_fish/api_service.dart';
 import 'package:betta_fish/page/page/home.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class DetailProduck extends StatefulWidget {
+  final data;
+  DetailProduck({this.data});
   @override
   _DetailProduckState createState() => _DetailProduckState();
 }
@@ -173,7 +175,8 @@ class _DetailProduckState extends State<DetailProduck> {
                                                                 .fromSTEB(0, 20,
                                                                     0, 0),
                                                         child: Text(
-                                                          'Rosetail Lavender',
+                                                          widget
+                                                              .data.namaBarang,
                                                           style: TextStyle(
                                                             fontFamily: 'Ovo',
                                                             color: Color(
@@ -273,7 +276,7 @@ class _DetailProduckState extends State<DetailProduck> {
                                                                   .fromSTEB(0,
                                                                       5, 0, 0),
                                                           child: Text(
-                                                            'Rp.50,000',
+                                                            'Rp.${widget.data.harga}',
                                                             style: TextStyle(
                                                               fontFamily:
                                                                   'Lora',
@@ -287,30 +290,40 @@ class _DetailProduckState extends State<DetailProduck> {
                                                           ),
                                                         ),
                                                       ),
-                                                      Align(
-                                                        alignment:
-                                                            AlignmentDirectional(
-                                                                -1, 0),
-                                                        child: Padding(
-                                                          padding:
-                                                              EdgeInsetsDirectional
-                                                                  .fromSTEB(180,
-                                                                      25, 0, 0),
-                                                          child: Container(
-                                                            width: 170,
-                                                            height: 80,
-                                                            decoration:
-                                                                BoxDecoration(
-                                                              color: Color(
-                                                                  0x00EEEEEE),
-                                                              image:
-                                                                  DecorationImage(
-                                                                fit: BoxFit
-                                                                    .cover,
+                                                      InkWell(
+                                                        onTap: () =>
+                                                            ApiService()
+                                                                .addToCart(
+                                                                    widget.data
+                                                                        .id),
+                                                        child: Align(
+                                                          alignment:
+                                                              AlignmentDirectional(
+                                                                  -1, 0),
+                                                          child: Padding(
+                                                            padding:
+                                                                EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        180,
+                                                                        25,
+                                                                        0,
+                                                                        0),
+                                                            child: Container(
+                                                              width: 170,
+                                                              height: 80,
+                                                              decoration:
+                                                                  BoxDecoration(
+                                                                color: Color(
+                                                                    0x00EEEEEE),
                                                                 image:
-                                                                    Image.asset(
-                                                                  'assets/images/plus.png',
-                                                                ).image,
+                                                                    DecorationImage(
+                                                                  fit: BoxFit
+                                                                      .cover,
+                                                                  image: Image
+                                                                      .asset(
+                                                                    'assets/images/plus.png',
+                                                                  ).image,
+                                                                ),
                                                               ),
                                                             ),
                                                           ),
@@ -328,9 +341,8 @@ class _DetailProduckState extends State<DetailProduck> {
                                                 color: Color(0x00EEEEEE),
                                                 image: DecorationImage(
                                                   fit: BoxFit.cover,
-                                                  image: Image.asset(
-                                                    'assets/images/ikan3.png',
-                                                  ).image,
+                                                  image: NetworkImage(
+                                                      widget.data.fotoBarang),
                                                 ),
                                               ),
                                             ),
@@ -414,7 +426,7 @@ class _DetailProduckState extends State<DetailProduck> {
                                                               .fromSTEB(
                                                                   0, 4, 0, 0),
                                                       child: Text(
-                                                        '1,5cm',
+                                                        '${widget.data.weight}cm',
                                                         style: TextStyle(
                                                             fontFamily:
                                                                 'Advent Pro',
@@ -474,7 +486,7 @@ class _DetailProduckState extends State<DetailProduck> {
                                                                 .fromSTEB(
                                                                     0, 4, 0, 0),
                                                         child: Text(
-                                                          '3cm',
+                                                          '${widget.data.height}cm',
                                                           style: TextStyle(
                                                               fontFamily:
                                                                   'Advent Pro',
@@ -532,7 +544,7 @@ class _DetailProduckState extends State<DetailProduck> {
                                                               .fromSTEB(
                                                                   0, 4, 0, 0),
                                                       child: Text(
-                                                        '2 Bulan',
+                                                        '${widget.data.age} Bulan',
                                                         style: TextStyle(
                                                             fontFamily:
                                                                 'Advent Pro',

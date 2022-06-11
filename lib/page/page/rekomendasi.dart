@@ -1,20 +1,15 @@
 import 'package:betta_fish/page/components/CardAppbar.dart';
 import 'package:betta_fish/page/components/CardNavbar.dart';
 import 'package:betta_fish/page/components/CardNavbar2.dart';
-import 'package:betta_fish/page/components/CardRow.dart';
 import 'package:betta_fish/page/components/Card2Row.dart';
-import 'package:betta_fish/page/page/home.dart';
-import 'package:betta_fish/page/proses%20pemesanan/keranjang.dart';
-import 'package:betta_fish/page/proses%20pemesanan/transaksi.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
-class Rekomendasi extends StatefulWidget {
+class RekomendasiPage extends StatefulWidget {
   @override
-  _RekomendasiState createState() => _RekomendasiState();
+  _RekomendasiPageState createState() => _RekomendasiPageState();
 }
 
-class _RekomendasiState extends State<Rekomendasi> {
+class _RekomendasiPageState extends State<RekomendasiPage> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -69,11 +64,11 @@ class _RekomendasiState extends State<Rekomendasi> {
                         padding: EdgeInsets.zero,
                         scrollDirection: Axis.vertical,
                         children: [
-                          Card2Row(),
-                          Card2Row(),
-                          Card2Row(),
-                          Card2Row(),
-                          Card2Row()
+                          // Card2Row(),
+                          // Card2Row(),
+                          // Card2Row(),
+                          // Card2Row(),
+                          // Card2Row()
                         ],
                       ),
                     ),
