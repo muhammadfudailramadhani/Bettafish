@@ -19,7 +19,7 @@ class _CardAppbarState extends State<CardAppbar> {
           child: Padding(
               padding: EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
               child: Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(10, 3, 0, 0),
+                padding: EdgeInsetsDirectional.fromSTEB(0, 3, 0, 0),
                 child: InkWell(
                   onTap: () {
                     Navigator.push(
@@ -28,8 +28,8 @@ class _CardAppbarState extends State<CardAppbar> {
                     );
                   },
                   child: Container(
-                    width: 80,
-                    height: 80,
+                    width: 50,
+                    height: 50,
                     decoration: BoxDecoration(
                       color: Color(0x00B48F8F),
                       image: DecorationImage(
@@ -46,10 +46,10 @@ class _CardAppbarState extends State<CardAppbar> {
         Align(
           alignment: AlignmentDirectional(-1, -0.9),
           child: Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(340, 12, 0, 0),
+            padding: EdgeInsetsDirectional.fromSTEB(180, 12, 0, 0),
             child: Container(
-              width: 40,
-              height: 40,
+              width: 25,
+              height: 25,
               decoration: BoxDecoration(
                 color: Color(0x00BB3F3F),
                 image: DecorationImage(
@@ -65,7 +65,7 @@ class _CardAppbarState extends State<CardAppbar> {
         Align(
           alignment: AlignmentDirectional(-1, -0.9),
           child: Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(75, 10, 0, 0),
+            padding: EdgeInsetsDirectional.fromSTEB(30, 10, 0, 0),
             child: InkWell(
               onTap: () {
                 Navigator.push(
