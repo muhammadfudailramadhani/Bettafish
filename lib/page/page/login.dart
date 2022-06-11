@@ -1,5 +1,12 @@
+import 'dart:convert';
+
+import 'package:betta_fish/api_service.dart';
+import 'package:betta_fish/page/page/home.dart';
+import 'package:betta_fish/page/page/register.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import "package:http/http.dart" as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Login extends StatefulWidget {
   @override
@@ -8,6 +15,39 @@ class Login extends StatefulWidget {
 
 class _LoginState extends State<Login> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  bool isLoading = false;
+  TextEditingController username = TextEditingController();
+  TextEditingController password = TextEditingController();
+  String errorMessage = "";
+  Future login() async {
+    setState(() {
+      isLoading = true;
+    });
+    Uri url = Uri.parse("$baseUrl/user/login");
+    SharedPreferences storage = await SharedPreferences.getInstance();
+    headers["Authorization"] = "Bearer ${storage.getString("token")}";
+    final res = await http.post(url,
+        body:
+            jsonEncode({"username": username.text, "password": password.text}),
+        headers: headers);
+    if (res.statusCode == 200) {
+      setState(() {
+        isLoading = false;
+      });
+      var data = jsonDecode(res.body);
+      storage.setString("token", data["token"]);
+      Navigator.of(context)
+          .pushReplacement(MaterialPageRoute(builder: (context) => Home()));
+    } else {
+      var data = jsonDecode(res.body);
+      setState(() {
+        isLoading = false;
+        errorMessage = data["message"];
+      });
+      print(res.body);
+      print("gagal");
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -144,9 +184,10 @@ class _LoginState extends State<Login> {
                                     padding: const EdgeInsets.only(
                                         top: 2, bottom: 0, left: 10, right: 85),
                                     child: TextFormField(
+                                      controller: username,
                                       decoration: InputDecoration(
                                         border: InputBorder.none,
-                                        hintText: 'Enter your email',
+                                        hintText: 'Enter your username',
                                         hintStyle: GoogleFonts.poppins(
                                           fontSize: 14,
                                           fontWeight: FontWeight.w500,
@@ -159,6 +200,12 @@ class _LoginState extends State<Login> {
                               ],
                             ),
                           ),
+                          Text(
+                            errorMessage == "user tidak ditemukan"
+                                ? errorMessage
+                                : "",
+                            style: TextStyle(color: Colors.red),
+                          )
                         ],
                       ),
 
@@ -211,6 +258,7 @@ class _LoginState extends State<Login> {
                                 padding: EdgeInsets.only(
                                     top: 2, bottom: 0, left: 13, right: 85),
                                 child: TextFormField(
+                                  controller: password,
                                   decoration: InputDecoration(
                                     border: InputBorder.none,
                                     hintText: 'Password',
@@ -251,6 +299,10 @@ class _LoginState extends State<Login> {
                           ],
                         ),
                       ),
+                      Text(
+                        errorMessage == "password salah" ? errorMessage : "",
+                        style: TextStyle(color: Colors.red),
+                      ),
                       SizedBox(height: 60),
                       Container(
                         width: 450,
@@ -261,21 +313,31 @@ class _LoginState extends State<Login> {
                         ),
                         child: TextButton(
                           onPressed: () {
-                            // Navigator.push(
-                            //   context,
-                            //   MaterialPageRoute(builder: (context) => Login()),
-                            // );
+                            login();
                           },
-                          child: Text(
-                            'Login',
-                            style: TextStyle(
-                              fontFamily: 'Poppins',
-                              fontSize: 18,
-                              color: Colors.white,
-                            ),
-                          ),
+                          child: isLoading
+                              ? CircularProgressIndicator(
+                                  color: Colors.white,
+                                )
+                              : Text(
+                                  'Login',
+                                  style: TextStyle(
+                                    fontFamily: 'Poppins',
+                                    fontSize: 18,
+                                    color: Colors.white,
+                                  ),
+                                ),
                         ),
                       ),
+                      TextButton(
+                          onPressed: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => Register()));
+                          },
+                          child: Text(
+                            "register",
+                            style: TextStyle(color: Colors.black),
+                          ))
                     ],
                   ),
                 ),

@@ -1,16 +1,14 @@
+import 'package:betta_fish/api_service.dart';
+import 'package:betta_fish/model/popular_model.dart';
+import 'package:betta_fish/model/rekomedasi_model.dart';
 import 'package:betta_fish/page/components/CardAppbar.dart';
 import 'package:betta_fish/page/components/CardNavbar.dart';
 import 'package:betta_fish/page/components/CardNavbar2.dart';
 import 'package:betta_fish/page/components/CardRow.dart';
-import 'package:betta_fish/page/components/Card2Row.dart';
 import 'package:betta_fish/page/components/Cardcategory.dart';
-import 'package:betta_fish/page/page/category.dart';
 import 'package:betta_fish/page/page/popular.dart';
 import 'package:betta_fish/page/page/rekomendasi.dart';
-import 'package:betta_fish/page/proses%20pemesanan/keranjang.dart';
-import 'package:betta_fish/page/proses%20pemesanan/transaksi.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -19,9 +17,18 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  late Future rekomedasi;
+  late Future popular;
+  @override
+  void initState() {
+    rekomedasi = ApiService().rekomendasi();
+    popular = ApiService().popular();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: Colors.white,
@@ -96,7 +103,7 @@ class _HomeState extends State<Home> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => Rekomendasi()),
+                                  builder: (context) => RekomendasiPage()),
                             );
                           },
                           child: Text(
@@ -110,8 +117,17 @@ class _HomeState extends State<Home> {
                         ),
                       ),
                     ),
-                    CardRow(),
-                    
+                    FutureBuilder(
+                      builder: (context, AsyncSnapshot snapshot) {
+                        if (snapshot.connectionState != ConnectionState.done)
+                          return CircularProgressIndicator();
+                        if (snapshot.hasError) return Text("terjadi kesalahan");
+                        if (snapshot.hasData)
+                          return _rekomendasiBuilder(snapshot.data, width);
+                        return Text("kosong");
+                      },
+                      future: rekomedasi,
+                    ),
                     Align(
                       alignment: AlignmentDirectional(-1, -0.5),
                       child: Padding(
@@ -159,7 +175,17 @@ class _HomeState extends State<Home> {
                         ),
                       ),
                     ),
-                    Card2Row(),
+                    FutureBuilder(
+                      builder: (context, AsyncSnapshot snapshot) {
+                        if (snapshot.connectionState != ConnectionState.done)
+                          return CircularProgressIndicator();
+                        if (snapshot.hasError) return Text("terjadi kesalahan");
+                        if (snapshot.hasData)
+                          return _popularBuilder(snapshot.data, width);
+                        return Text("kosong");
+                      },
+                      future: popular,
+                    ),
                     CardNavbar2(),
                     CardNavbar(),
                   ],
@@ -168,6 +194,40 @@ class _HomeState extends State<Home> {
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  Widget _popularBuilder(PopularModel data, width) {
+    return Container(
+      height: width / 1.5,
+      width: MediaQuery.of(context).size.width,
+      child: ListView(
+        shrinkWrap: true,
+        scrollDirection: Axis.horizontal,
+        children: data.data.asMap().entries.map((data) {
+          return CardRow(
+            data: data.value,
+            i: data.key,
+          );
+        }).toList(),
+      ),
+    );
+  }
+
+  Widget _rekomendasiBuilder(Rekomendasi data, width) {
+    return Container(
+      height: width / 1.5,
+      width: MediaQuery.of(context).size.width,
+      child: ListView(
+        shrinkWrap: true,
+        scrollDirection: Axis.horizontal,
+        children: data.data.asMap().entries.map((data) {
+          return CardRow(
+            data: data.value,
+            i: data.key,
+          );
+        }).toList(),
       ),
     );
   }

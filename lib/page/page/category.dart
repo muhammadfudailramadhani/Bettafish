@@ -1,14 +1,9 @@
 import 'package:betta_fish/page/components/CardAppbar.dart';
 import 'package:betta_fish/page/components/CardNavbar.dart';
 import 'package:betta_fish/page/components/CardNavbar2.dart';
-import 'package:betta_fish/page/components/CardRow.dart';
 import 'package:betta_fish/page/components/Card2Row.dart';
 import 'package:betta_fish/page/components/Cardcategory.dart';
-import 'package:betta_fish/page/page/home.dart';
-import 'package:betta_fish/page/proses%20pemesanan/keranjang.dart';
-import 'package:betta_fish/page/proses%20pemesanan/transaksi.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class Category extends StatefulWidget {
   @override
@@ -61,7 +56,7 @@ class _CategoryState extends State<Category> {
                       ),
                     ),
                     CardCategori(),
-                    Card2Row(),
+                    // Card2Row(),
                     CardNavbar2(),
                     CardNavbar()
                   ],

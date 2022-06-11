@@ -1,15 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class Cardstatus extends StatefulWidget {
-
+  final data;
+  Cardstatus({required this.data});
   @override
   _CardstatusState createState() => _CardstatusState();
 }
 
 class _CardstatusState extends State<Cardstatus> {
+  void setStateIfMounted(f) {
+    if (mounted) setState(f);
+  }
+
+  String status = "";
   @override
   Widget build(BuildContext context) {
+    setStateIfMounted(() {
+      widget.data.map((val) {
+        status = val.statusPemesanan;
+      }).toList();
+    });
     return Row(
       mainAxisSize: MainAxisSize.max,
       children: [
@@ -33,10 +43,10 @@ class _CardstatusState extends State<Cardstatus> {
                       padding: EdgeInsetsDirectional.fromSTEB(22, 10, 20, 0),
                       child: Text(
                         '1',
-                        style:TextStyle(
-                              fontFamily: 'Poppins',
-                              fontSize: 20,
-                            ),
+                        style: TextStyle(
+                          fontFamily: 'Poppins',
+                          fontSize: 20,
+                        ),
                       ),
                     ),
                   ),
@@ -44,6 +54,11 @@ class _CardstatusState extends State<Cardstatus> {
               ),
               Text(
                 'Pesanan\ndibuat',
+                style: TextStyle(
+                  color: status == "Pesanan dibuat"
+                      ? Color(0xFF56EA11)
+                      : Colors.black,
+                ),
               ),
             ],
           ),
@@ -67,11 +82,11 @@ class _CardstatusState extends State<Cardstatus> {
                     child: Padding(
                       padding: EdgeInsetsDirectional.fromSTEB(22, 10, 20, 0),
                       child: Text(
-                        '1',
+                        '2',
                         style: TextStyle(
-                              fontFamily: 'Poppins',
-                              fontSize: 20,
-                            ),
+                          fontFamily: 'Poppins',
+                          fontSize: 20,
+                        ),
                       ),
                     ),
                   ),
@@ -80,9 +95,11 @@ class _CardstatusState extends State<Cardstatus> {
               Text(
                 'Pesanan\ndiproses',
                 style: TextStyle(
-                      fontFamily: 'Poppins',
-                      color: Color(0xFF56EA11),
-                    ),
+                  fontFamily: 'Poppins',
+                  color: status == "Pesanan dipacking"
+                      ? Color(0xFF56EA11)
+                      : Colors.black,
+                ),
               ),
             ],
           ),
@@ -106,11 +123,11 @@ class _CardstatusState extends State<Cardstatus> {
                     child: Padding(
                       padding: EdgeInsetsDirectional.fromSTEB(22, 10, 20, 0),
                       child: Text(
-                        '1',
+                        '3',
                         style: TextStyle(
-                              fontFamily: 'Poppins',
-                              fontSize: 20,
-                            ),
+                          fontFamily: 'Poppins',
+                          fontSize: 20,
+                        ),
                       ),
                     ),
                   ),
@@ -118,6 +135,11 @@ class _CardstatusState extends State<Cardstatus> {
               ),
               Text(
                 'Pesanan\ndikirim',
+                style: TextStyle(
+                  color: status == "Pesanan dikirim"
+                      ? Color(0xFF56EA11)
+                      : Colors.black,
+                ),
               ),
             ],
           ),

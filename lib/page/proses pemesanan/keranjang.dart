@@ -1,9 +1,9 @@
-import 'package:betta_fish/page/components/CardTransaksi.dart';
+import 'package:betta_fish/api_service.dart';
+import 'package:betta_fish/model/keranjang_model.dart';
 import 'package:betta_fish/page/components/Cardkeranjang.dart';
 import 'package:betta_fish/page/page/home.dart';
 import 'package:betta_fish/page/proses%20pemesanan/pemesanan.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class Keranjang extends StatefulWidget {
   @override
@@ -12,13 +12,43 @@ class Keranjang extends StatefulWidget {
 
 class _KeranjangState extends State<Keranjang> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  late Stream keranjang;
+
+  @override
+  void initState() {
+    keranjang = Stream.periodic(Duration(seconds: 5))
+        .asyncMap((event) => ApiService().keranjang());
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: Colors.white,
-      body: SafeArea(
+      body: StreamBuilder(
+        builder: (context, AsyncSnapshot snaphot) {
+          if (snaphot.connectionState != ConnectionState.active)
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          if (snaphot.hasError)
+            return Center(
+              child: Text("terjadi kesalahan"),
+            );
+          if (snaphot.hasData) return _builder(snaphot.data);
+          return Center(
+            child: Text("kosong"),
+          );
+        },
+        stream: keranjang,
+      ),
+    );
+  }
+
+  Widget _builder(KeranjangModel data) {
+    return SafeArea(
+      child: SingleChildScrollView(
         child: Column(
           mainAxisSize: MainAxisSize.max,
           children: [
@@ -88,7 +118,13 @@ class _KeranjangState extends State<Keranjang> {
                       ),
                     ],
                   ),
-                  Cardkeranjang(),
+                  Column(
+                    children: data.data.map((data) {
+                      return Cardkeranjang(
+                        data: data,
+                      );
+                    }).toList(),
+                  ),
                   Row(
                     mainAxisSize: MainAxisSize.max,
                     children: [
@@ -120,7 +156,10 @@ class _KeranjangState extends State<Keranjang> {
                       onPressed: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => Pemesanan()),
+                          MaterialPageRoute(
+                              builder: (context) => Pemesanan(
+                                    data: data,
+                                  )),
                         );
                       },
                       style: TextButton.styleFrom(
