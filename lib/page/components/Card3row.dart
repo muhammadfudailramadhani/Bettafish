@@ -1,15 +1,15 @@
 import 'package:betta_fish/page/detail/detailproduct.dart';
 import 'package:flutter/material.dart';
 
-class Card2Row extends StatefulWidget {
+class Card3Row extends StatefulWidget {
   final data;
   int i;
-  Card2Row({required this.data, required this.i});
+  Card3Row({required this.data, required this.i});
   @override
-  _Card2RowState createState() => _Card2RowState();
+  _Card3RowState createState() => _Card3RowState();
 }
 
-class _Card2RowState extends State<Card2Row> {
+class _Card3RowState extends State<Card3Row> {
   @override
   Widget build(BuildContext context) {
     return InkWell(

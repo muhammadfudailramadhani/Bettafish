@@ -36,7 +36,7 @@ class _DetailProduckState extends State<DetailProduck> {
                       children: [
                         Container(
                           width: 700,
-                          height: 1050,
+                          height: 1450,
                           decoration: BoxDecoration(
                             color: Color.fromARGB(255, 255, 255, 255),
                           ),
@@ -45,7 +45,7 @@ class _DetailProduckState extends State<DetailProduck> {
                             children: [
                               Container(
                                 width: 700,
-                                height: 630,
+                                height: 660,
                                 decoration: BoxDecoration(
                                   color: Color(0xFFC0A3FF),
                                   borderRadius: BorderRadius.only(
@@ -129,10 +129,10 @@ class _DetailProduckState extends State<DetailProduck> {
                                                   AlignmentDirectional(0, 0),
                                               child: Padding(
                                                 padding: EdgeInsetsDirectional
-                                                    .fromSTEB(25, 0, 0, 0),
+                                                    .fromSTEB(15, 0, 0, 0),
                                                 child: Container(
                                                   width: 280,
-                                                  height: 503,
+                                                  height: 538,
                                                   decoration: BoxDecoration(
                                                     color: Color.fromARGB(
                                                         0, 46, 8, 128),
@@ -148,188 +148,192 @@ class _DetailProduckState extends State<DetailProduck> {
                                                           Radius.circular(0),
                                                     ),
                                                   ),
-                                                  child: Column(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    children: [
-                                                      Align(
-                                                        alignment:
-                                                            AlignmentDirectional(
-                                                                -1, 0),
-                                                        child: Text(
-                                                          'Betta Fish',
-                                                          style: TextStyle(
-                                                              fontFamily:
-                                                                  'Marko One',
-                                                              color: Color(
-                                                                  0xA5FFFFFF),
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w500,
-                                                              fontSize: 25),
-                                                        ),
-                                                      ),
-                                                      Padding(
-                                                        padding:
-                                                            EdgeInsetsDirectional
-                                                                .fromSTEB(0, 20,
-                                                                    0, 0),
-                                                        child: Text(
-                                                          widget
-                                                              .data.namaBarang,
-                                                          style: TextStyle(
-                                                            fontFamily: 'Ovo',
-                                                            color: Color(
-                                                                0xC8FFFFFF),
-                                                            fontSize: 60,
-                                                            fontWeight:
-                                                                FontWeight.w100,
-                                                          ),
-                                                        ),
-                                                      ),
-                                                      Align(
-                                                        alignment:
-                                                            AlignmentDirectional(
-                                                                -1, 0.05),
-                                                        child: Padding(
-                                                          padding:
-                                                              EdgeInsetsDirectional
-                                                                  .fromSTEB(0,
-                                                                      40, 0, 0),
+                                                  child: Padding(
+                                                    padding: EdgeInsetsDirectional
+                                                        .fromSTEB(15, 0, 0, 0),
+                                                    child: Column(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      children: [
+                                                        Align(
+                                                          alignment:
+                                                              AlignmentDirectional(
+                                                                  -1, 0),
                                                           child: Text(
-                                                            'Color',
+                                                            'Betta Fish',
                                                             style: TextStyle(
                                                                 fontFamily:
                                                                     'Marko One',
                                                                 color: Color(
-                                                                    0x80FFFFFF),
+                                                                    0xA5FFFFFF),
                                                                 fontWeight:
                                                                     FontWeight
-                                                                        .normal,
-                                                                fontSize: 30),
+                                                                        .w500,
+                                                                fontSize: 25),
                                                           ),
                                                         ),
-                                                      ),
-                                                      Row(
-                                                        mainAxisSize:
-                                                            MainAxisSize.max,
-                                                        children: [
-                                                          Padding(
+                                                        Padding(
+                                                          padding:
+                                                              EdgeInsetsDirectional
+                                                                  .fromSTEB(0, 20,
+                                                                      0, 0),
+                                                          child: Text(
+                                                            widget
+                                                                .data.namaBarang,
+                                                            style: TextStyle(
+                                                              fontFamily: 'Ovo',
+                                                              color: Color(
+                                                                  0xC8FFFFFF),
+                                                              fontSize: 60,
+                                                              fontWeight:
+                                                                  FontWeight.w100,
+                                                            ),
+                                                          ),
+                                                        ),
+                                                        Align(
+                                                          alignment:
+                                                              AlignmentDirectional(
+                                                                  -1, 0.05),
+                                                          child: Padding(
                                                             padding:
                                                                 EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        0,
-                                                                        5,
-                                                                        0,
-                                                                        0),
+                                                                    .fromSTEB(0,
+                                                                        40, 0, 0),
                                                             child: Text(
-                                                              'Multicolor',
+                                                              'Color',
                                                               style: TextStyle(
-                                                                fontFamily:
-                                                                    'Montaga',
-                                                                color: Color
-                                                                    .fromARGB(
-                                                                        119,
-                                                                        182,
-                                                                        1,
-                                                                        198),
-                                                                fontSize: 24,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600,
+                                                                  fontFamily:
+                                                                      'Marko One',
+                                                                  color: Color(
+                                                                      0x80FFFFFF),
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .normal,
+                                                                  fontSize: 30),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                        Row(
+                                                          mainAxisSize:
+                                                              MainAxisSize.max,
+                                                          children: [
+                                                            Padding(
+                                                              padding:
+                                                                  EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          0,
+                                                                          5,
+                                                                          0,
+                                                                          0),
+                                                              child: Text(
+                                                                'Multicolor',
+                                                                style: TextStyle(
+                                                                  fontFamily:
+                                                                      'Montaga',
+                                                                  color: Color
+                                                                      .fromARGB(
+                                                                          119,
+                                                                          182,
+                                                                          1,
+                                                                          198),
+                                                                  fontSize: 24,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w600,
+                                                                ),
                                                               ),
                                                             ),
-                                                          ),
-                                                        ],
-                                                      ),
-                                                      Align(
-                                                        alignment:
-                                                            AlignmentDirectional(
-                                                                -1, 0),
-                                                        child: Padding(
-                                                          padding:
-                                                              EdgeInsetsDirectional
-                                                                  .fromSTEB(0,
-                                                                      20, 0, 0),
-                                                          child: Text(
-                                                            'Harga',
-                                                            style: TextStyle(
-                                                              fontFamily:
-                                                                  'Marko One',
-                                                              color:
-                                                                  Colors.white,
-                                                              fontSize: 30,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .normal,
-                                                            ),
-                                                          ),
+                                                          ],
                                                         ),
-                                                      ),
-                                                      Align(
-                                                        alignment:
-                                                            AlignmentDirectional(
-                                                                -1, 0),
-                                                        child: Padding(
-                                                          padding:
-                                                              EdgeInsetsDirectional
-                                                                  .fromSTEB(0,
-                                                                      5, 0, 0),
-                                                          child: Text(
-                                                            'Rp.${widget.data.harga}',
-                                                            style: TextStyle(
-                                                              fontFamily:
-                                                                  'Lora',
-                                                              color: Color(
-                                                                  0x90FF0000),
-                                                              fontSize: 24,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w400,
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                      InkWell(
-                                                        onTap: () =>
-                                                            ApiService()
-                                                                .addToCart(
-                                                                    widget.data
-                                                                        .id),
-                                                        child: Align(
+                                                        Align(
                                                           alignment:
                                                               AlignmentDirectional(
                                                                   -1, 0),
                                                           child: Padding(
                                                             padding:
                                                                 EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        180,
-                                                                        25,
-                                                                        0,
-                                                                        0),
-                                                            child: Container(
-                                                              width: 170,
-                                                              height: 80,
-                                                              decoration:
-                                                                  BoxDecoration(
+                                                                    .fromSTEB(0,
+                                                                        20, 0, 0),
+                                                            child: Text(
+                                                              'Harga',
+                                                              style: TextStyle(
+                                                                fontFamily:
+                                                                    'Marko One',
+                                                                color:
+                                                                    Colors.white,
+                                                                fontSize: 30,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .normal,
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                        Align(
+                                                          alignment:
+                                                              AlignmentDirectional(
+                                                                  -1, 0),
+                                                          child: Padding(
+                                                            padding:
+                                                                EdgeInsetsDirectional
+                                                                    .fromSTEB(0,
+                                                                        5, 0, 0),
+                                                            child: Text(
+                                                              'Rp.${widget.data.harga}',
+                                                              style: TextStyle(
+                                                                fontFamily:
+                                                                    'Lora',
                                                                 color: Color(
-                                                                    0x00EEEEEE),
-                                                                image:
-                                                                    DecorationImage(
-                                                                  fit: BoxFit
-                                                                      .cover,
-                                                                  image: Image
-                                                                      .asset(
-                                                                    'assets/images/plus.png',
-                                                                  ).image,
+                                                                    0x90FF0000),
+                                                                fontSize: 24,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w400,
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                        InkWell(
+                                                          onTap: () =>
+                                                              ApiService()
+                                                                  .addToCart(
+                                                                      widget.data
+                                                                          .id),
+                                                          child: Align(
+                                                            alignment:
+                                                                AlignmentDirectional(
+                                                                    -1, 0),
+                                                            child: Padding(
+                                                              padding:
+                                                                  EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          180,
+                                                                          0,
+                                                                          0,
+                                                                          0),
+                                                              child: Container(
+                                                                width: 120,
+                                                                height: 80,
+                                                                decoration:
+                                                                    BoxDecoration(
+                                                                  color: Color(
+                                                                      0x00EEEEEE),
+                                                                  image:
+                                                                      DecorationImage(
+                                                                    fit: BoxFit
+                                                                        .cover,
+                                                                    image: Image
+                                                                        .asset(
+                                                                      'assets/images/plus.png',
+                                                                    ).image,
+                                                                  ),
                                                                 ),
                                                               ),
                                                             ),
                                                           ),
                                                         ),
-                                                      ),
-                                                    ],
+                                                      ],
+                                                    ),
                                                   ),
                                                 ),
                                               ),
@@ -340,7 +344,7 @@ class _DetailProduckState extends State<DetailProduck> {
                                               decoration: BoxDecoration(
                                                 color: Color(0x00EEEEEE),
                                                 image: DecorationImage(
-                                                  fit: BoxFit.cover,
+                                                  fit: BoxFit.none,
                                                   image: NetworkImage(
                                                       widget.data.fotoBarang),
                                                 ),
@@ -355,7 +359,7 @@ class _DetailProduckState extends State<DetailProduck> {
                               ),
                               Container(
                                 width: 700,
-                                height: 390,
+                                height: 720,
                                 decoration: BoxDecoration(
                                   color: Colors.white,
                                   borderRadius: BorderRadius.circular(0),
@@ -653,6 +657,44 @@ class _DetailProduckState extends State<DetailProduck> {
                                         ),
                                       ],
                                     ),
+                                    Column(
+                                        mainAxisSize: MainAxisSize.max,
+                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        children: [
+                                          Align(
+                                            alignment: AlignmentDirectional(
+                                                -0.7, -0.5),
+                                            child: (Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(0, 0, 0, 0),
+                                              child: Text(
+                                                'Description',
+                                                style: TextStyle(
+                                                  fontFamily: 'Advent Pro',
+                                                  color: Color(0xFFF98531),
+                                                  fontSize: 30,
+                                                  fontWeight: FontWeight.w600,
+                                                ),
+                                              ),
+                                            )),
+                                          ),
+                                          Padding(
+                                            padding: EdgeInsetsDirectional
+                                                .fromSTEB(68, 30, 30, 0),
+                                            child: Text(
+                                                        '${widget.data.deskripsi}',
+                                                        style: TextStyle(
+                                                            fontFamily:
+                                                                'Advent Pro',
+                                                            color:
+                                                                Colors.black,
+                                                            fontSize: 25,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .w500),
+                                                      ),
+                                          )
+                                        ])
                                   ],
                                 ),
                               ),

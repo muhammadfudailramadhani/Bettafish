@@ -84,55 +84,50 @@ class _CardNavbarState extends State<CardNavbar> {
                 MaterialPageRoute(builder: (context) => TransaksiPage()),
               );
             },
-            
-            child:  responsive(),
+            child: Padding(
+              padding: EdgeInsetsDirectional.fromSTEB(420, 15, 0, 10),
+              child: Container(
+                width: 80,
+                height: 70,
+                decoration: BoxDecoration(
+                  color: Color(0x00EEEEEE),
+                ),
+                alignment: AlignmentDirectional(0, 0),
+                child: Column(
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Align(
+                      alignment: AlignmentDirectional(0, -0.55),
+                      child: Container(
+                        width: 25,
+                        height: 25,
+                        decoration: BoxDecoration(
+                          color: Color(0x00EEEEEE),
+                          image: DecorationImage(
+                            fit: BoxFit.cover,
+                            image: Image.asset(
+                              'assets/images/transaksi.png',
+                            ).image,
+                          ),
+                        ),
+                      ),
+                    ),
+                    Text(
+                      'Transaksi',
+                      style: TextStyle(
+                        fontFamily: 'Ovo',
+                        color: Color.fromARGB(255, 75, 71, 71),
+                        fontSize: 18,
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
           ),
         ],
       ),
     );
-  }
-
-  Padding responsive() {
-    return Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(420, 15, 0, 10),
-            child: Container(
-              width: 80,
-              height: 70,
-              decoration: BoxDecoration(
-                color: Color(0x00EEEEEE),
-              ),
-              alignment: AlignmentDirectional(0, 0),
-              child: Column(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Align(
-                    alignment: AlignmentDirectional(0, -0.55),
-                    child: Container(
-                      width: 25,
-                      height: 25,
-                      decoration: BoxDecoration(
-                        color: Color(0x00EEEEEE),
-                        image: DecorationImage(
-                          fit: BoxFit.cover,
-                          image: Image.asset(
-                            'assets/images/transaksi.png',
-                          ).image,
-                        ),
-                      ),
-                    ),
-                  ),
-                  Text(
-                    'Transaksi',
-                    style: TextStyle(
-                      fontFamily: 'Ovo',
-                      color: Color.fromARGB(255, 75, 71, 71),
-                      fontSize: 18,
-                      fontWeight: FontWeight.w400,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          );
   }
 }

@@ -9,6 +9,7 @@ class CardAppbar extends StatefulWidget {
 }
 
 class _CardAppbarState extends State<CardAppbar> {
+  
   bool show = false;
   @override
   Widget build(BuildContext context) {
@@ -20,7 +21,7 @@ class _CardAppbarState extends State<CardAppbar> {
           child: Padding(
               padding: EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
               child: Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0, 3, 0, 0),
+                padding: EdgeInsetsDirectional.fromSTEB(10, 3, 0, 0),
                 child: InkWell(
                   onTap: () {
                     Navigator.push(
@@ -29,8 +30,8 @@ class _CardAppbarState extends State<CardAppbar> {
                     );
                   },
                   child: Container(
-                    width: 50,
-                    height: 50,
+                    width: 80,
+                    height: 80,
                     decoration: BoxDecoration(
                       color: Color(0x00B48F8F),
                       image: DecorationImage(
@@ -98,7 +99,7 @@ class _CardAppbarState extends State<CardAppbar> {
         Align(
           alignment: AlignmentDirectional(-1, -0.9),
           child: Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(30, 10, 0, 0),
+            padding: EdgeInsetsDirectional.fromSTEB(75, 10, 0, 0),
             child: InkWell(
               onTap: () {
                 Navigator.push(

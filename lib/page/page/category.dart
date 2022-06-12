@@ -12,6 +12,7 @@ class Category extends StatefulWidget {
 
 class _CategoryState extends State<Category> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  List category = ["All", "Fish", "Fish", "Fish", "Fish", "Fish", "Fish"];
 
   @override
   Widget build(BuildContext context) {
@@ -55,7 +56,14 @@ class _CategoryState extends State<Category> {
                         ),
                       ),
                     ),
-                    CardCategori(),
+                    Container(
+                      height: MediaQuery.of(context).size.height * 0.1,
+                      child: ListView(
+                        children: category.map((data){
+                          return CardCategori(data: data);
+                        }).toList(),
+                      ),
+                    ),
                     // Card2Row(),
                     CardNavbar2(),
                     CardNavbar()

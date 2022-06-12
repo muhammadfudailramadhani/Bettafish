@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 
 //
 class CardCategori extends StatefulWidget {
+  String data;
+  CardCategori({required this.data});
   @override
   _CardCategoriState createState() => _CardCategoriState();
 }
@@ -35,7 +37,7 @@ class _CardCategoriState extends State<CardCategori> {
                 children: [
                   Padding(
                     padding:
-                        EdgeInsets.only(top: 0, bottom: 0, left: 10, right: 0),
+                        EdgeInsets.only(top: 0, bottom: 0, left: 5, right: 0),
                     child: TextButton(
                       onPressed: () {
                         Navigator.push(
@@ -50,7 +52,7 @@ class _CardCategoriState extends State<CardCategori> {
                         ),
                       ),
                       child: Text(
-                        'All',
+                        widget.data,
                         style: TextStyle(
                           fontFamily: 'Marko One',
                           color: Colors.black,

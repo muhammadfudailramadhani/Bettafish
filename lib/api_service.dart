@@ -8,7 +8,7 @@ import 'package:betta_fish/model/transaksi_model.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
-String baseUrl = "http://192.168.5.220:5000";
+String baseUrl = "http://192.168.5.19:5000";
 Map<String, String> headers = {
   "Content-Type": "application/json",
   "Authorization": ""

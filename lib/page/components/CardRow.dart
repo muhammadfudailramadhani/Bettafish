@@ -15,6 +15,7 @@ class _CardRowState extends State<CardRow> {
     if (widget.i % 2 == 0) {
       return Container(
         height: 390,
+        
         decoration: BoxDecoration(
           color: Colors.white,
         ),
@@ -32,7 +33,7 @@ class _CardRowState extends State<CardRow> {
             padding: const EdgeInsetsDirectional.fromSTEB(50, 0, 0, 0),
             child: Container(
               width: 230,
-              height: 400,
+              height: 450,
               decoration: BoxDecoration(
                 color: Color(0xFFC0A3FF),
                 borderRadius: BorderRadius.only(
