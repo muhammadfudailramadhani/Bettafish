@@ -28,9 +28,9 @@ class _Card2RowState extends State<Card2Row> {
           width: 230,
           height: 450,
           decoration: BoxDecoration(
-            color: widget.i % 2 == 0
-                ? Color(0xFFC0A3FF)
-                : Color.fromARGB(120, 249, 132, 49),
+            color: widget.i % 1 == 0
+                ?  Color.fromARGB(120, 249, 132, 49)
+                :Color(0xFFC0A3FF),
             borderRadius: BorderRadius.only(
               bottomLeft: Radius.circular(30),
               bottomRight: Radius.circular(30),

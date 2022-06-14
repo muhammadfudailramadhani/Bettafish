@@ -1,5 +1,6 @@
 import 'package:betta_fish/api_service.dart';
 import 'package:betta_fish/page/page/home.dart';
+import 'package:betta_fish/page/proses%20pemesanan/keranjang.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -99,16 +100,27 @@ class _DetailProduckState extends State<DetailProduck> {
                                           padding:
                                               EdgeInsetsDirectional.fromSTEB(
                                                   430, 3, 0, 0),
-                                          child: Container(
-                                            width: 50,
-                                            height: 50,
-                                            decoration: BoxDecoration(
-                                              color: Color(0x00EEEEEE),
-                                              image: DecorationImage(
-                                                fit: BoxFit.cover,
-                                                image: Image.asset(
-                                                  'assets/images/keranjang2.png',
-                                                ).image,
+                                          child: InkWell(
+                                            onTap: () {
+                                              Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      Keranjang(),
+                                                ),
+                                              );
+                                            },
+                                            child: Container(
+                                              width: 50,
+                                              height: 50,
+                                              decoration: BoxDecoration(
+                                                color: Color(0x00EEEEEE),
+                                                image: DecorationImage(
+                                                  fit: BoxFit.cover,
+                                                  image: Image.asset(
+                                                    'assets/images/keranjang2.png',
+                                                  ).image,
+                                                ),
                                               ),
                                             ),
                                           ),
@@ -149,8 +161,10 @@ class _DetailProduckState extends State<DetailProduck> {
                                                     ),
                                                   ),
                                                   child: Padding(
-                                                    padding: EdgeInsetsDirectional
-                                                        .fromSTEB(15, 0, 0, 0),
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(
+                                                                15, 0, 0, 0),
                                                     child: Column(
                                                       mainAxisSize:
                                                           MainAxisSize.max,
@@ -175,18 +189,19 @@ class _DetailProduckState extends State<DetailProduck> {
                                                         Padding(
                                                           padding:
                                                               EdgeInsetsDirectional
-                                                                  .fromSTEB(0, 20,
-                                                                      0, 0),
+                                                                  .fromSTEB(0,
+                                                                      20, 0, 0),
                                                           child: Text(
-                                                            widget
-                                                                .data.namaBarang,
+                                                            widget.data
+                                                                .namaBarang,
                                                             style: TextStyle(
                                                               fontFamily: 'Ovo',
                                                               color: Color(
                                                                   0xC8FFFFFF),
                                                               fontSize: 60,
                                                               fontWeight:
-                                                                  FontWeight.w100,
+                                                                  FontWeight
+                                                                      .w100,
                                                             ),
                                                           ),
                                                         ),
@@ -197,8 +212,11 @@ class _DetailProduckState extends State<DetailProduck> {
                                                           child: Padding(
                                                             padding:
                                                                 EdgeInsetsDirectional
-                                                                    .fromSTEB(0,
-                                                                        40, 0, 0),
+                                                                    .fromSTEB(
+                                                                        0,
+                                                                        40,
+                                                                        0,
+                                                                        0),
                                                             child: Text(
                                                               'Color',
                                                               style: TextStyle(
@@ -227,7 +245,8 @@ class _DetailProduckState extends State<DetailProduck> {
                                                                           0),
                                                               child: Text(
                                                                 'Multicolor',
-                                                                style: TextStyle(
+                                                                style:
+                                                                    TextStyle(
                                                                   fontFamily:
                                                                       'Montaga',
                                                                   color: Color
@@ -252,15 +271,18 @@ class _DetailProduckState extends State<DetailProduck> {
                                                           child: Padding(
                                                             padding:
                                                                 EdgeInsetsDirectional
-                                                                    .fromSTEB(0,
-                                                                        20, 0, 0),
+                                                                    .fromSTEB(
+                                                                        0,
+                                                                        20,
+                                                                        0,
+                                                                        0),
                                                             child: Text(
                                                               'Harga',
                                                               style: TextStyle(
                                                                 fontFamily:
                                                                     'Marko One',
-                                                                color:
-                                                                    Colors.white,
+                                                                color: Colors
+                                                                    .white,
                                                                 fontSize: 30,
                                                                 fontWeight:
                                                                     FontWeight
@@ -276,8 +298,11 @@ class _DetailProduckState extends State<DetailProduck> {
                                                           child: Padding(
                                                             padding:
                                                                 EdgeInsetsDirectional
-                                                                    .fromSTEB(0,
-                                                                        5, 0, 0),
+                                                                    .fromSTEB(
+                                                                        0,
+                                                                        5,
+                                                                        0,
+                                                                        0),
                                                             child: Text(
                                                               'Rp.${widget.data.harga}',
                                                               style: TextStyle(
@@ -297,7 +322,8 @@ class _DetailProduckState extends State<DetailProduck> {
                                                           onTap: () =>
                                                               ApiService()
                                                                   .addToCart(
-                                                                      widget.data
+                                                                      widget
+                                                                          .data
                                                                           .id),
                                                           child: Align(
                                                             alignment:
@@ -659,7 +685,8 @@ class _DetailProduckState extends State<DetailProduck> {
                                     ),
                                     Column(
                                         mainAxisSize: MainAxisSize.max,
-                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
                                         children: [
                                           Align(
                                             alignment: AlignmentDirectional(
@@ -679,20 +706,17 @@ class _DetailProduckState extends State<DetailProduck> {
                                             )),
                                           ),
                                           Padding(
-                                            padding: EdgeInsetsDirectional
-                                                .fromSTEB(68, 30, 30, 0),
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    68, 30, 30, 0),
                                             child: Text(
-                                                        '${widget.data.deskripsi}',
-                                                        style: TextStyle(
-                                                            fontFamily:
-                                                                'Advent Pro',
-                                                            color:
-                                                                Colors.black,
-                                                            fontSize: 25,
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .w500),
-                                                      ),
+                                              '${widget.data.deskripsi}',
+                                              style: TextStyle(
+                                                  fontFamily: 'Advent Pro',
+                                                  color: Colors.black,
+                                                  fontSize: 25,
+                                                  fontWeight: FontWeight.w500),
+                                            ),
                                           )
                                         ])
                                   ],

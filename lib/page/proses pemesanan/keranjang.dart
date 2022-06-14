@@ -94,7 +94,7 @@ class _KeranjangState extends State<Keranjang> {
                           padding: EdgeInsetsDirectional.fromSTEB(190, 5, 0, 0),
                           child: Container(
                             width: 160,
-                            height: 40,
+                            height: 60,
                             decoration: BoxDecoration(
                               color: Colors.white,
                             ),

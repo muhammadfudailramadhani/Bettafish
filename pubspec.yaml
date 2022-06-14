@@ -77,6 +77,7 @@ flutter:
     - assets/images/bn.png
     - assets/images/minus.png
     - assets/images/pluss.png
+    - assets/images/logout.png
     # - assets/videos/
     # - assets/audios/
     # - assets/lottie_animations/

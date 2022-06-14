@@ -1,5 +1,6 @@
 import 'package:betta_fish/page/page/home.dart';
 import 'package:betta_fish/page/page/login.dart';
+import 'package:betta_fish/page/page/welcome.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -36,7 +37,7 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: token == null ? Login() : Home(),
+      home: token == null ? Welcome() : Home(),
     );
   }
 }

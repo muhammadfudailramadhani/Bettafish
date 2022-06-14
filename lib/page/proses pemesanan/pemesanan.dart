@@ -14,7 +14,7 @@ class Pemesanan extends StatefulWidget {
 class _PemesananState extends State<Pemesanan> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
   TextEditingController alamat = TextEditingController();
-  TextEditingController phone = TextEditingController();
+  TextEditingController nama = TextEditingController();
   TextEditingController total = TextEditingController();
   @override
   Widget build(BuildContext context) {
@@ -82,19 +82,7 @@ class _PemesananState extends State<Pemesanan> {
                     ),
                   ],
                 ),
-                Align(
-                  alignment: AlignmentDirectional(-0.80, 0),
-                  child: Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 30, 0, 0),
-                    child: Text(
-                      'Joniony',
-                      style: TextStyle(
-                        fontFamily: 'Roboto Slab',
-                        fontSize: 28,
-                      ),
-                    ),
-                  ),
-                ),
+                
                 Align(
                   alignment: AlignmentDirectional(-0.80, 0),
                   child: Padding(
@@ -124,7 +112,7 @@ class _PemesananState extends State<Pemesanan> {
                   child: Padding(
                     padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
                     child: Text(
-                      'No.telpon',
+                      'Nama',
                       style: TextStyle(
                         fontFamily: 'Roboto Condensed',
                         color: Color(0xA6867272),
@@ -137,70 +125,13 @@ class _PemesananState extends State<Pemesanan> {
                   margin: EdgeInsets.symmetric(vertical: 10),
                   padding: EdgeInsets.symmetric(horizontal: 50),
                   child: TextField(
-                    controller: phone,
+                    controller: nama,
                     decoration: InputDecoration(
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(15))),
                   ),
                 ),
-                // Align(
-                //   alignment: AlignmentDirectional(-0.80, 0),
-                //   child: Padding(
-                //     padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
-                //     child: Text(
-                //       'Ongkir',
-                //       style:TextStyle(
-                //             fontFamily: 'Roboto Condensed',
-                //             color: Color(0xA6867272),
-                //             fontSize: 17,
-                //           ),
-                //     ),
-                //   ),
-                // ),
-                // Align(
-                //   alignment: AlignmentDirectional(-0.30, 0),
-                //   child: Container(
-                //     width: 500,
-                //     height: 40,
-                //     decoration: BoxDecoration(
-                //       color: Color(0x15F98531),
-                //       borderRadius: BorderRadius.circular(30),
-                //     ),
-                //     child: Row(
-                //       mainAxisSize: MainAxisSize.max,
-                //       children: [
-                //         Padding(
-                //           padding: EdgeInsetsDirectional.fromSTEB(20, 0, 0, 0),
-                //           child: Text(
-                //             '20,000'
-                //           ),
-                //         ),
-                //         Padding(
-                //           padding: EdgeInsetsDirectional.fromSTEB(300, 0, 0, 0),
-                //           child: Text(
-                //             'Pl.Jawa',
-                //           ),
-                //         ),
-                //         Padding(
-                //           padding: EdgeInsetsDirectional.fromSTEB(3, 0, 1, 0),
-                //           child: Container(
-                //             width: 20,
-                //             height: 20,
-                //             decoration: BoxDecoration(
-                //               color: Color(0x00FFFFFF),
-                //               image: DecorationImage(
-                //                 fit: BoxFit.cover,
-                //                 image: Image.asset(
-                //                   'assets/images/bn.png',
-                //                 ).image,
-                //               ),
-                //             ),
-                //           ),
-                //         ),
-                //       ],
-                //     ),
-                //   ),
-                // ),
+               
                 Align(
                   alignment: AlignmentDirectional(-0.80, 0),
                   child: Padding(
@@ -248,7 +179,7 @@ class _PemesananState extends State<Pemesanan> {
                     onPressed: () {
                       widget.data.data.map((data) {
                         ApiService().pesan(data.barangId, alamat.text,
-                            data.jumlah, int.parse(total.text));
+                            data.jumlah, nama.text,int.parse(total.text));
                       }).toList();
                     },
                     child: Text(

@@ -8,15 +8,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 class Search extends StatefulWidget {
-  String data;
-  Search({required this.data});
+  String data;// data yang di inputkan di textfield
+  Search({required this.data});// untuk mengirimkan data yang di inputkan di textfield ke halaman ini 
   @override
   _SearchState createState() => _SearchState();
 }
 
 class _SearchState extends State<Search> {
-  final scaffoldKey = GlobalKey<ScaffoldState>();
-  late Future search;
+  final scaffoldKey = GlobalKey<ScaffoldState>();// scaffold key untuk menampilkan snackbar 
+  late Future search;// untuk menampung data yang di dapat dari API 
   @override
   void initState() {
     search = ApiService().search(widget.data);
@@ -33,25 +33,25 @@ class _SearchState extends State<Search> {
           children: [CardNavbar2(), CardNavbar()],
         ),
       ),
-      key: scaffoldKey,
+      key: scaffoldKey,// untuk menampilkan snackbar
       backgroundColor: Colors.white,
       body: FutureBuilder(
         future: search,
         builder: (context, AsyncSnapshot snapshot) {
-          if (snapshot.connectionState != ConnectionState.done)
+          if (snapshot.connectionState != ConnectionState.done)// jika data belum di dapatkan dari API  
             return Center(
               child: CircularProgressIndicator(),
-            );
-          if (snapshot.hasError)
+            );// menampilkan loading 
+          if (snapshot.hasError)// jika terdapat error 
             return Center(
               child: Text("tejadi kesalahan"),
-            );
-          if (snapshot.hasData) return _builder(snapshot.data, context);
+            );// menampilkan text tejadi kesalahan
+          if (snapshot.hasData) return _builder(snapshot.data, context);// jika data sudah di dapatkan dari API   
           return Center(
             child: Text("kosong"),
-          );
+          );// menampilkan text kosong
         },
-      ),
+      ),// sangat membantu developer untuk mengetahui setiap keadaan atau state yang terjadi pada sebuah proses
     );
   }
 }
@@ -59,7 +59,7 @@ class _SearchState extends State<Search> {
 Widget _builder(SearchModel data, context) {
   return SafeArea(
     child: GestureDetector(
-      onTap: () => FocusScope.of(context).unfocus(),
+      onTap: () => FocusScope.of(context).unfocus(),// ketika di klik di luar textfield maka textfield akan tidak terlihat
       child: Column(
         children: [
           Expanded(
@@ -68,12 +68,13 @@ Widget _builder(SearchModel data, context) {
               shrinkWrap: true,
               scrollDirection: Axis.vertical,
               children: [
-                CardAppbar(),
+                CardAppbar(),// menampilkan card appbar
                 StaggeredGrid.count(
                   crossAxisCount: 2,
                   mainAxisSpacing: 60,
-                  children: data.data.asMap().entries.map((data) {
-                    return Card2Row(data: data.value,i: data.key,);
+                  children: data.data.asMap().entries.map((data)//mendapatkan data dari API ke dalam listview  
+                  {
+                    return Card2Row(data: data.value,i: data.key,);// menampilkan card2row dengan data yang didapatkan dari API 
                   }).toList(),
                 ),
               ],

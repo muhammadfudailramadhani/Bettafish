@@ -1,6 +1,9 @@
 import 'package:betta_fish/page/page/home.dart';
+import 'package:betta_fish/page/page/login.dart';
+import 'package:betta_fish/page/page/register.dart';
 import 'package:betta_fish/page/proses%20pemesanan/transaksi.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class CardNavbar extends StatefulWidget {
   @override
@@ -78,6 +81,55 @@ class _CardNavbarState extends State<CardNavbar> {
             ),
           ),
           InkWell(
+            onTap: () async {
+              SharedPreferences storage = await SharedPreferences.getInstance();
+              storage.remove("token");
+              Navigator.of(context).pushReplacement(
+                  MaterialPageRoute(builder: (context) => Login()));
+            },
+            child: Padding(
+              padding: EdgeInsetsDirectional.fromSTEB(175, 10, 0, 10),
+              child: Container(
+                width: 80,
+                height: 70,
+                decoration: BoxDecoration(
+                  color: Color(0x00EEEEEE),
+                ),
+                alignment: AlignmentDirectional(0, 0),
+                child: Column(
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Align(
+                      alignment: AlignmentDirectional(0, -0.55),
+                      child: Container(
+                        width: 35,
+                        height: 35,
+                        decoration: BoxDecoration(
+                          color: Color(0x00EEEEEE),
+                          image: DecorationImage(
+                            fit: BoxFit.cover,
+                            image: Image.asset(
+                              'assets/images/logout.png',
+                            ).image,
+                          ),
+                        ),
+                      ),
+                    ),
+                    Text(
+                      'Logout',
+                      style: TextStyle(
+                        fontFamily: 'Ovo',
+                        color: Color.fromARGB(255, 75, 71, 71),
+                        fontSize: 18,
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+          InkWell(
             onTap: () {
               Navigator.push(
                 context,
@@ -85,7 +137,7 @@ class _CardNavbarState extends State<CardNavbar> {
               );
             },
             child: Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(420, 15, 0, 10),
+              padding: EdgeInsetsDirectional.fromSTEB(180, 15, 0, 10),
               child: Container(
                 width: 80,
                 height: 70,

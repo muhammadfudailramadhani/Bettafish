@@ -18,7 +18,7 @@ class _RegisterState extends State<Register> {
   TextEditingController username = TextEditingController();
   TextEditingController phone = TextEditingController();
   TextEditingController password = TextEditingController();
-  TextEditingController alamat = TextEditingController();
+  TextEditingController role = TextEditingController();
   String error = "";
 
   Future register() async {
@@ -28,7 +28,7 @@ class _RegisterState extends State<Register> {
           "username": username.text,
           "password": password.text,
           "phone": phone.text,
-          "alamat": alamat.text
+          "role": role.text
         }),
         headers: headers);
     SharedPreferences storage = await SharedPreferences.getInstance();
@@ -369,26 +369,7 @@ class _RegisterState extends State<Register> {
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           children: [
-                            Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(17, 0, 0, 0),
-                              child: Container(
-                                width: 20,
-                                height: 30,
-                                decoration: BoxDecoration(
-                                  color: Color(0x00EEEEEE),
-                                  image: DecorationImage(
-                                    fit: BoxFit.cover,
-                                    image: Image.asset(
-                                      'assets/images/password.png',
-                                    ).image,
-                                  ),
-                                ),
-                              ),
-                            ),
-                            SizedBox(
-                              height: 40,
-                            ),
+                          
                             Container(
                               width: 290,
                               height: 100,
@@ -403,12 +384,12 @@ class _RegisterState extends State<Register> {
                               ),
                               child: Padding(
                                 padding: EdgeInsets.only(
-                                    top: 2, bottom: 0, left: 13, right: 85),
+                                    top: 2, bottom: 0, left: 50, right: 85),
                                 child: TextFormField(
-                                  controller: alamat,
+                                  controller: role,
                                   decoration: InputDecoration(
                                     border: InputBorder.none,
-                                    hintText: 'Alamat',
+                                    hintText: 'role',
                                     hintStyle: GoogleFonts.poppins(
                                       fontSize: 14,
                                       fontWeight: FontWeight.w500,
@@ -418,51 +399,39 @@ class _RegisterState extends State<Register> {
                                   autofocus: false,
                                   validator: (String? value) {
                                     if (value == null || value.isEmpty) {
-                                      return 'Please enter password';
+                                      return 'Please enter role';
                                     }
                                     return null;
                                   },
                                 ),
                               ),
                             ),
-                            Padding(
-                              padding: const EdgeInsets.only(
-                                  top: 5, bottom: 0, left: 30, right: 0),
-                              child: Container(
-                                width: 30,
-                                height: 20,
-                                decoration: BoxDecoration(
-                                  color: Color(0x00EEEEEE),
-                                  image: DecorationImage(
-                                    fit: BoxFit.cover,
-                                    image: Image.asset(
-                                      'assets/images/mata.png',
-                                    ).image,
-                                  ),
-                                ),
-                              ),
-                            ),
+                          
                           ],
                         ),
                       ),
                       SizedBox(height: 60),
-                      Container(
-                        width: 450,
-                        height: 50,
-                        decoration: BoxDecoration(
-                          color: Color(0xFF700BEF),
-                          borderRadius: BorderRadius.circular(30),
-                        ),
-                        child: TextButton(
-                          onPressed: () {
-                            register();
-                          },
-                          child: Text(
-                            'Register',
-                            style: TextStyle(
-                              fontFamily: 'Poppins',
-                              fontSize: 18,
-                              color: Colors.white,
+                      Padding(
+                        padding: const EdgeInsets.only(
+                                    top: 0, bottom: 100, left: 0, right: 0),
+                        child: Container(
+                          width: 450,
+                          height: 50,
+                          decoration: BoxDecoration(
+                            color: Color(0xFF700BEF),
+                            borderRadius: BorderRadius.circular(30),
+                          ),
+                          child: TextButton(
+                            onPressed: () {
+                              register();
+                            },
+                            child: Text(
+                              'Register',
+                              style: TextStyle(
+                                fontFamily: 'Poppins',
+                                fontSize: 18,
+                                color: Colors.white,
+                              ),
                             ),
                           ),
                         ),

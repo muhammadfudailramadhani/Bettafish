@@ -47,7 +47,7 @@ class _CardkeranjangState extends State<Cardkeranjang> {
               ),
               Container(
                 width: 170,
-                height: 100,
+                height: 120,
                 decoration: BoxDecoration(
                   color: Color(0x00EEEEEE),
                 ),

@@ -45,7 +45,7 @@ class _CardAppbarState extends State<CardAppbar> {
                 ),
               )),
         ),
-        show
+        show// agar container search tidak terlihat ketika halaman di load
             ? Row(
                 children: [
                   Container(
@@ -54,18 +54,19 @@ class _CardAppbarState extends State<CardAppbar> {
                       onSubmitted: (value) {
                         if (value.isEmpty) {
                           return;
-                        } else {
+                        } // agar tidak terjadi error ketika tidak mengisi data di textfield 
+                        else {
                           Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => Search(data: value,)));
+                              builder: (context) => Search(data: value,)));// menampilkan halaman search  dengan data yang di inputkan  di textfield 
                         }
-                      },
+                      },// agar textfield tidak bisa diisi kosong dan tidak bisa di submit dengan tombol enter 
                     ),
                   ),
                   IconButton(
                       onPressed: () {
                         setState(() {
                           show = false;
-                        });
+                        });//ketika tombol close ditekan maka container search akan disembunyikan
                       },
                       icon: Icon(Icons.cancel))
                 ],
@@ -74,7 +75,7 @@ class _CardAppbarState extends State<CardAppbar> {
                 onTap: () {
                   setState(() {
                     show = true;
-                  });
+                  });// ketika di tekan maka container search akan ditampilkan  dan bisa di isi data
                 },
                 child: Align(
                   alignment: AlignmentDirectional(-1, -0.9),

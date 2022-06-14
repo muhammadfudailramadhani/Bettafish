@@ -20,7 +20,7 @@ class _CardTransaksiState extends State<CardTransaksi> {
         child: Padding(
           padding: EdgeInsetsDirectional.fromSTEB(10, 20, 0, 0),
           child: Container(
-            width: 500,
+            width: 600,
             height: 100,
             decoration: BoxDecoration(
               color: Color(0xC2C0A3FF),
@@ -52,7 +52,7 @@ class _CardTransaksiState extends State<CardTransaksi> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(100, 15, 20, 15),
+                  padding: EdgeInsetsDirectional.fromSTEB(60, 15, 20, 15),
                   child: Container(
                     width: 50,
                     height: 50,
