@@ -16,7 +16,7 @@ class _CardpemesananState extends State<Cardpemesanan> {
       child: Align(
         alignment: AlignmentDirectional(-0.40, 0),
         child: Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(10, 20, 0, 0),
+          padding: EdgeInsetsDirectional.fromSTEB(30, 20, 0, 0),
           child: Container(
             width: 500,
             height: 100,
@@ -50,7 +50,7 @@ class _CardpemesananState extends State<Cardpemesanan> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(100, 15, 20, 15),
+                  padding: EdgeInsetsDirectional.fromSTEB(60, 15, 20, 15),
                   child: Container(
                     width: 50,
                     height: 50,

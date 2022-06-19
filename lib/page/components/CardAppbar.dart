@@ -13,10 +13,10 @@ class _CardAppbarState extends State<CardAppbar> {
   bool show = false;
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisSize: MainAxisSize.max,
-      children: [
-        Align(
+    return AppBar(
+        backgroundColor: Colors.white,
+        
+        leading: Align(
           alignment: AlignmentDirectional(-1, -1),
           child: Padding(
               padding: EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
@@ -45,11 +45,17 @@ class _CardAppbarState extends State<CardAppbar> {
                 ),
               )),
         ),
-        show// agar container search tidak terlihat ketika halaman di load
+       
+        actions: [
+          
+          show// agar container search tidak terlihat ketika halaman di load
             ? Row(
                 children: [
+                  
                   Container(
-                    width: 320,
+                    width: 300,
+                    //border
+                    
                     child: TextField(
                       onSubmitted: (value) {
                         if (value.isEmpty) {
@@ -68,7 +74,9 @@ class _CardAppbarState extends State<CardAppbar> {
                           show = false;
                         });//ketika tombol close ditekan maka container search akan disembunyikan
                       },
-                      icon: Icon(Icons.cancel))
+                      icon: Icon(Icons.cancel)
+                            
+                      )
                 ],
               )
             : InkWell(
@@ -80,10 +88,10 @@ class _CardAppbarState extends State<CardAppbar> {
                 child: Align(
                   alignment: AlignmentDirectional(-1, -0.9),
                   child: Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(340, 12, 0, 0),
+                    padding: EdgeInsetsDirectional.fromSTEB(450, 12, 10, 0),
                     child: Container(
-                      width: 40,
-                      height: 40,
+                      width: 30,
+                      height: 30,
                       decoration: BoxDecoration(
                         color: Color(0x00BB3F3F),
                         image: DecorationImage(
@@ -97,10 +105,10 @@ class _CardAppbarState extends State<CardAppbar> {
                   ),
                 ),
               ),
-        Align(
+           Align(
           alignment: AlignmentDirectional(-1, -0.9),
           child: Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(75, 10, 0, 0),
+            padding: EdgeInsetsDirectional.fromSTEB(40, 10, 20, 0),
             child: InkWell(
               onTap: () {
                 Navigator.push(
@@ -126,7 +134,8 @@ class _CardAppbarState extends State<CardAppbar> {
             ),
           ),
         ),
-      ],
-    );
+        ],
+      
+      );
   }
 }

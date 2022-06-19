@@ -62,6 +62,7 @@ class _Card3RowState extends State<Card3Row> {
                       fontFamily: 'Marko One',
                       color: Colors.white,
                       fontWeight: FontWeight.w300,
+                      fontSize: 20,
                     ),
                   ),
                 ),

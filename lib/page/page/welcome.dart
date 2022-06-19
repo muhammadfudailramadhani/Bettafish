@@ -23,7 +23,6 @@ class _WelcomeState extends State<Welcome> {
             child: Align(
               alignment: AlignmentDirectional(0, -0.05),
               child: Container(
-              
                 alignment: AlignmentDirectional(0.050000000000000044, 0),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
@@ -76,8 +75,6 @@ class _WelcomeState extends State<Welcome> {
                     SizedBox(
                       height: 80,
                     ),
-        
-                    
                     Align(
                       alignment: AlignmentDirectional(0, 0),
                       child: Container(
@@ -102,8 +99,6 @@ class _WelcomeState extends State<Welcome> {
                         ),
                       ),
                     ),
-        
-        
                     Padding(
                       padding: EdgeInsetsDirectional.fromSTEB(0, 50, 0, 0),
                       child: Container(
@@ -113,29 +108,25 @@ class _WelcomeState extends State<Welcome> {
                           color: Color(0xFF700BEF),
                           borderRadius: BorderRadius.circular(30),
                         ),
-                        
-                          child: TextButton(
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>  Register()),
-                              );
-                            },
-                            child: Text(
-                              'Register',
-                              style: TextStyle(
-                                fontFamily: 'Poppins',
-                                fontSize: 18,
-                                color: Colors.white,
-                              ),
+                        child: TextButton(
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => Register()),
+                            );
+                          },
+                          child: Text(
+                            'Register',
+                            style: TextStyle(
+                              fontFamily: 'Poppins',
+                              fontSize: 18,
+                              color: Colors.white,
                             ),
-                          
+                          ),
                         ),
                       ),
                     ),
-        
-                    
                     Padding(
                       padding: EdgeInsetsDirectional.fromSTEB(0, 40, 0, 0),
                       child: Container(
@@ -145,25 +136,22 @@ class _WelcomeState extends State<Welcome> {
                           color: Color(0x4C700BEF),
                           borderRadius: BorderRadius.circular(30),
                         ),
-                        
-                          child: TextButton(
-                              onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>  Login()),
-                              );
-                            },
-                            child: Text(
-                              'Login',
-                              style: TextStyle(
-                                fontFamily: 'Poppins',
-                                fontSize: 18,
-                                color: Color(0xFF700BEF),
-                              ),
+                        child: TextButton(
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => Login()),
+                            );
+                          },
+                          child: Text(
+                            'Login',
+                            style: TextStyle(
+                              fontFamily: 'Poppins',
+                              fontSize: 18,
+                              color: Color(0xFF700BEF),
                             ),
                           ),
-                        
+                        ),
                       ),
                     ),
                   ],

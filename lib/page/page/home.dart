@@ -3,11 +3,13 @@ import 'package:betta_fish/model/popular_model.dart';
 import 'package:betta_fish/model/rekomedasi_model.dart';
 import 'package:betta_fish/page/components/Card2Row.dart';
 import 'package:betta_fish/page/components/Card3row.dart';
-import 'package:betta_fish/page/components/CardAppbar.dart';
+// import 'package:betta_fish/page/components/CardAppbar.dart';
 import 'package:betta_fish/page/components/CardNavbar.dart';
-import 'package:betta_fish/page/components/CardNavbar2.dart';
+// import 'package:betta_fish/page/components/CardNavbar2.dart';
 import 'package:betta_fish/page/components/CardRow.dart';
+import 'package:betta_fish/page/page/Search.dart';
 import 'package:betta_fish/page/page/category.dart';
+import 'package:betta_fish/page/proses%20pemesanan/keranjang.dart';
 import 'package:flutter/material.dart';
 
 class Home extends StatefulWidget {
@@ -17,7 +19,20 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
-  List category = ["rosetail", "giant", "avatar", "koi", "halfmoon", "vancy", "Multicolor","avatar", "plakat", "candy", "nemo","red dragon"];
+  List category = [
+    "rosetail",
+    "giant",
+    "avatar",
+    "koi",
+    "halfmoon",
+    "vancy",
+    "Multicolor",
+    "avatar",
+    "plakat",
+    "candy",
+    "nemo",
+    "red dragon"
+  ];
   late Future rekomedasi;
   late Future
       popular; //untuk mengambil data dari API yang sudah dibuat di api_service.dart rekomendasi dan popular
@@ -29,14 +44,134 @@ class _HomeState extends State<Home> {
     super.initState();
   }
 
+  bool show = false;
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: Colors.white,
-      body: SafeArea(
-        child: GestureDetector(
+      body: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.white,
+          leading: Align(
+            alignment: AlignmentDirectional(-1, -1),
+            child: Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
+                child: Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(10, 3, 0, 0),
+                  child: InkWell(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => Home()),
+                      );
+                    },
+                    child: Container(
+                      width: 80,
+                      height: 80,
+                      decoration: BoxDecoration(
+                        color: Color(0x00B48F8F),
+                        image: DecorationImage(
+                          fit: BoxFit.cover,
+                          image: Image.asset(
+                            'assets/images/logo.png',
+                          ).image,
+                        ),
+                      ),
+                    ),
+                  ),
+                )),
+          ),
+          actions: [
+            show // agar container search tidak terlihat ketika halaman di load
+                ? Row(
+                    children: [
+                      Container(
+                        width: 300,
+                        //border
+
+                        child: TextField(
+                          onSubmitted: (value) {
+                            if (value.isEmpty) {
+                              return;
+                            } // agar tidak terjadi error ketika tidak mengisi data di textfield
+                            else {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => Search(
+                                        data: value,
+                                      ))); // menampilkan halaman search  dengan data yang di inputkan  di textfield
+                            }
+                          }, // agar textfield tidak bisa diisi kosong dan tidak bisa di submit dengan tombol enter
+                        ),
+                      ),
+                      IconButton(
+                          onPressed: () {
+                            setState(() {
+                              show = false;
+                            }); //ketika tombol close ditekan maka container search akan disembunyikan
+                          },
+                          icon: Icon(Icons.cancel))
+                    ],
+                  )
+                : InkWell(
+                    onTap: () {
+                      setState(() {
+                        show = true;
+                      }); // ketika di tekan maka container search akan ditampilkan  dan bisa di isi data
+                    },
+                    child: Align(
+                      alignment: AlignmentDirectional(-1, -0.9),
+                      child: Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(450, 12, 10, 0),
+                        child: Container(
+                          width: 30,
+                          height: 30,
+                          decoration: BoxDecoration(
+                            color: Color(0x00BB3F3F),
+                            image: DecorationImage(
+                              fit: BoxFit.cover,
+                              image: Image.asset(
+                                'assets/images/search.png',
+                              ).image,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+            Align(
+              alignment: AlignmentDirectional(-1, -0.9),
+              child: Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(40, 10, 20, 0),
+                child: InkWell(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => Keranjang(),
+                      ),
+                    );
+                  },
+                  child: Container(
+                    width: 40,
+                    height: 40,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      image: DecorationImage(
+                        fit: BoxFit.cover,
+                        image: Image.asset(
+                          'assets/images/keranjang.png',
+                        ).image,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+        body: GestureDetector(
           onTap: () => FocusScope.of(context).unfocus(),
           child: Column(
             mainAxisSize: MainAxisSize.max,
@@ -47,7 +182,6 @@ class _HomeState extends State<Home> {
                   shrinkWrap: true,
                   scrollDirection: Axis.vertical,
                   children: [
-                    CardAppbar(),
                     Align(
                       alignment: AlignmentDirectional(-1, -0.5),
                       child: Padding(
@@ -73,19 +207,20 @@ class _HomeState extends State<Home> {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(top: 0, bottom: 0, left: 30, right: 40),
+                      padding: const EdgeInsets.only(
+                          top: 0, bottom: 0, left: 30, right: 40),
                       child: Container(
                         height: 50,
                         width: 40,
                         child: ListView(
                           scrollDirection: Axis.horizontal,
                           children: category.map((data) {
-                            return _categoryButton(data);//untuk mengambil data dari list category dan mengirimkan ke _categoryButton untuk ditampilkan di halaman ini
+                            return _categoryButton(
+                                data); //untuk mengambil data dari list category dan mengirimkan ke _categoryButton untuk ditampilkan di halaman ini
                           }).toList(),
                         ),
                       ),
-                    ),// untuk menampilkan kategori dari API yang sudah dibuat di api_service.dart category dan mengirimkan ke model CategoryModel 
-                    
+                    ), // untuk menampilkan kategori dari API yang sudah dibuat di api_service.dart category dan mengirimkan ke model CategoryModel
 
                     Align(
                       alignment: AlignmentDirectional(-1, -0.5),
@@ -115,13 +250,17 @@ class _HomeState extends State<Home> {
                     FutureBuilder(
                       builder: (context, AsyncSnapshot snapshot) {
                         if (snapshot.connectionState != ConnectionState.done)
-                          return CircularProgressIndicator();//untuk menampilkan loading saat data dari API masih dalam proses pengambilan
-                        if (snapshot.hasError) return Text("terjadi kesalahan");//untuk menampilkan error saat data dari API gagal dikirimkan
+                          return CircularProgressIndicator(); //untuk menampilkan loading saat data dari API masih dalam proses pengambilan
+                        if (snapshot.hasError)
+                          return Text(
+                              "terjadi kesalahan"); //untuk menampilkan error saat data dari API gagal dikirimkan
                         if (snapshot.hasData)
-                          return _rekomendasiBuilder(snapshot.data, width);//untuk menampilkan data dari API yang sudah dibuat di api_service.dart rekomendasi dan mengirimkan ke model RekomendasiModel dan mengirimkan ke _rekomendasiBuilder untuk ditampilkan di halaman ini
-                        return Text("kosong");//untuk menampilkan data kosong saat data dari API masih dalam proses pengambilan atau gagal dikirimkan 
+                          return _rekomendasiBuilder(snapshot.data,
+                              width); //untuk menampilkan data dari API yang sudah dibuat di api_service.dart rekomendasi dan mengirimkan ke model RekomendasiModel dan mengirimkan ke _rekomendasiBuilder untuk ditampilkan di halaman ini
+                        return Text(
+                            "kosong"); //untuk menampilkan data kosong saat data dari API masih dalam proses pengambilan atau gagal dikirimkan
                       },
-                      future: rekomedasi,//
+                      future: rekomedasi, //
                     ),
                     Align(
                       alignment: AlignmentDirectional(-1, -0.5),
@@ -162,7 +301,7 @@ class _HomeState extends State<Home> {
                       }, //
                       future: popular,
                     ), // future builder untuk mengambil data dari api dan menampilkannya di halaman ini dengan menggunakan future builder
-                    CardNavbar2(),
+
                     CardNavbar(),
                   ],
                 ),
@@ -234,14 +373,16 @@ class _HomeState extends State<Home> {
         child: ListView(
           shrinkWrap: true,
           scrollDirection: Axis.horizontal,
-          children: data.data.asMap().entries.map((data) //untuk mengambil data dari data.value yang ada di RekomendasiModel dan menampilkan datanya dalam bentuk listview dengan menggunakan map dan entries 
-          {
+          children: data.data.asMap().entries.map(
+              (data) //untuk mengambil data dari data.value yang ada di RekomendasiModel dan menampilkan datanya dalam bentuk listview dengan menggunakan map dan entries
+              {
             return CardRow(
-              data: data.value,//data diambil dari data.value yang ada di RekomendasiModel dan menampilkan data dari data.value yang ada di RekomendasiModel yang ada di api_service.dart Rekomendasi dan mengirimkan ke model RekomendasiModel
-              i: data.key,//data diambil dari data.key yang ada di RekomendasiModel untuk mengambil index dari data yang ada di RekomendasiModel dan mengirimkan ke CardRow
+              data: data
+                  .value, //data diambil dari data.value yang ada di RekomendasiModel dan menampilkan data dari data.value yang ada di RekomendasiModel yang ada di api_service.dart Rekomendasi dan mengirimkan ke model RekomendasiModel
+              i: data
+                  .key, //data diambil dari data.key yang ada di RekomendasiModel untuk mengambil index dari data yang ada di RekomendasiModel dan mengirimkan ke CardRow
             );
-          })
-          .toList(),
+          }).toList(),
         ),
       ),
     );

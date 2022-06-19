@@ -9,34 +9,42 @@ import 'package:betta_fish/model/transaksi_model.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
-String baseUrl = "http://192.168.5.17:5000";// untuk localhost kita pakai ip addressnya localhost
+String baseUrl =
+    "http://192.168.2.23:5000"; // untuk localhost kita pakai ip addressnya localhost
 Map<String, String> headers = {
   "Content-Type": "application/json",
   "Authorization": ""
-};// membuat header yang akan dikirimkan ke server
+}; // headers untuk localhost kita pakai ip addressnya localhost
 
 class ApiService {
-
   Future kategori(String data) async {
-    Uri url = Uri.parse("$baseUrl/barang/get?category=$data");// untuk mengambil data dari server berdasarkan kategori yang di pilih user
-    SharedPreferences storage = await SharedPreferences.getInstance();// untuk mengambil data dari storage local yang berisi token 
-    headers["Authorization"] = "Bearer ${storage.getString("token")}";//  
-    final res = await http.get(url, headers: headers);// untuk mengambil data dari server
-    if (res.statusCode == 200) // jika status code dari server sama dengan 200 
+    Uri url = Uri.parse(
+        "$baseUrl/barang/get?category=$data"); // untuk mengambil data dari server berdasarkan kategori yang di pilih user
+    SharedPreferences storage = await SharedPreferences
+        .getInstance(); // untuk mengambil data dari storage local yang berisi token
+    headers["Authorization"] = "Bearer ${storage.getString("token")}"; //
+    final res = await http.get(url,
+        headers: headers); // untuk mengambil data dari server
+    if (res.statusCode == 200) // jika status code dari server sama dengan 200
     {
-      return kategoriModelFromJson(res.body);// mengubah data dari json ke dalam model kategori model 
+      return kategoriModelFromJson(
+          res.body); // mengubah data dari json ke dalam model kategori model
     } else {
       return false;
-    }// jika status code tidak sama dengan 200 
+    } // jika status code tidak sama dengan 200
   }
 
   Future search(String data) async {
-    Uri url = Uri.parse("$baseUrl/barang/get?search=$data");// mengambil data dari server berdasarkan keyword yang di tulis user
-    SharedPreferences storage = await SharedPreferences.getInstance();//  untuk mengambil data dari storage local yang berisi token 
+    Uri url = Uri.parse(
+        "$baseUrl/barang/get?search=$data"); // mengambil data dari server berdasarkan keyword yang di tulis user
+    SharedPreferences storage = await SharedPreferences
+        .getInstance(); //  untuk mengambil data dari storage local yang berisi token
     headers["Authorization"] = "Bearer ${storage.getString("token")}";
-    final res = await http.get(url, headers: headers);// mengambil data dari server
+    final res =
+        await http.get(url, headers: headers); // mengambil data dari server
     if (res.statusCode == 200) {
-      return searchModelFromJson(res.body);// mengubah data dari json ke dalam model search model
+      return searchModelFromJson(
+          res.body); // mengubah data dari json ke dalam model search model
     } else {
       return false;
     }
@@ -71,26 +79,36 @@ class ApiService {
     SharedPreferences storage = await SharedPreferences.getInstance();
     headers["Authorization"] = "Bearer ${storage.getString("token")}";
     final res = await http.post(url,
-        body: jsonEncode({"pesanan_id": pesananId, "status_id": 1}),//  untuk mengirim data ke transaksi
-        headers: headers);// untuk mengirim data ke transaksi berdasarkan id barang dan id pesanan yang di pilih user 
+        body: jsonEncode({
+          "pesanan_id": pesananId,
+          "status_id": 1
+        }), //  untuk mengirim data ke transaksi
+        headers:
+            headers); // untuk mengirim data ke transaksi berdasarkan id barang dan id pesanan yang di pilih user
     if (res.statusCode == 200) // jika status code dari server sama dengan 200
     {
-      print("ok");// untuk menampilkan data yang sudah di kirim
-      print(res.statusCode);// untuk menampilkan status code dari server 
+      print("ok"); // untuk menampilkan data yang sudah di kirim
+      print(res.statusCode); // untuk menampilkan status code dari server
       return true;
     } else {
-      print("gagal");// untuk menampilkan data yang gagal di kirim 
-      print(res.body); 
+      print("gagal"); // untuk menampilkan data yang gagal di kirim
+      print(res.body);
       return false;
-    }//jika status code tidak sama dengan 200
+    } //jika status code tidak sama dengan 200
   }
 
-  Future pesan(int id, String alamat, int jumlah, String nama, int total) async {
+  Future pesan(
+      int id, String alamat, int jumlah, String nama, int total) async {
     Uri url = Uri.parse("$baseUrl/pesanan/create/$id");
     SharedPreferences storage = await SharedPreferences.getInstance();
     headers["Authorization"] = "Bearer ${storage.getString("token")}";
     final res = await http.post(url,
-        body: jsonEncode({"alamat": alamat, "jumlah": jumlah, "total": total, "nama": nama}),//  untuk mengirim data ke pesanan
+        body: jsonEncode({
+          "alamat": alamat,
+          "jumlah": jumlah,
+          "total": total,
+          "nama": nama
+        }), //  untuk mengirim data ke pesanan
         headers: headers);
     if (res.statusCode == 200) {
       var data = jsonDecode(res.body)["value"];

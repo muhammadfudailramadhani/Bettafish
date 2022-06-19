@@ -15,7 +15,6 @@ class _CardRowState extends State<CardRow> {
     if (widget.i % 2 == 0) {
       return Container(
         height: 390,
-        
         decoration: BoxDecoration(
           color: Colors.white,
         ),
@@ -67,6 +66,7 @@ class _CardRowState extends State<CardRow> {
                           fontFamily: 'Marko One',
                           color: Colors.white,
                           fontWeight: FontWeight.w300,
+                          fontSize: 20,
                         ),
                       ),
                     ),
@@ -146,6 +146,7 @@ class _CardRowState extends State<CardRow> {
                           fontFamily: 'Marko One',
                           color: Colors.white,
                           fontWeight: FontWeight.w300,
+                          fontSize: 20,
                         ),
                       ),
                     ),

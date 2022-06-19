@@ -1,5 +1,4 @@
 import 'package:betta_fish/page/page/home.dart';
-import 'package:betta_fish/page/page/login.dart';
 import 'package:betta_fish/page/page/welcome.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
