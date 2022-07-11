@@ -5,6 +5,7 @@ import 'package:betta_fish/page/components/Cardpemesanan.dart';
 import 'package:betta_fish/page/proses%20pemesanan/keranjang.dart';
 import 'package:betta_fish/page/proses%20pemesanan/transaksi.dart';
 import 'package:flutter/material.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 
 class Pemesanan extends StatefulWidget {
   int total;
@@ -22,65 +23,67 @@ class _PemesananState extends State<Pemesanan> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: Row(
-        mainAxisSize: MainAxisSize.max,
-        children: [
-          Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(10, 15, 0, 0),
-            child: InkWell(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => Keranjang()),
-                );
-              },
-              child: Container(
-                width: 50,
-                height: 50,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  image: DecorationImage(
-                    fit: BoxFit.cover,
-                    image: Image.asset(
-                      'assets/images/kembali.png',
-                    ).image,
-                  ),
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        leading: Padding(
+          padding: EdgeInsetsDirectional.fromSTEB(10, 15, 0, 0),
+          child: InkWell(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => Keranjang()),
+              );
+            },
+            child: Container(
+              width: 50,
+              height: 50,
+              decoration: BoxDecoration(
+                color: Color.fromARGB(0, 255, 255, 255),
+                image: DecorationImage(
+                  fit: BoxFit.cover,
+                  image: Image.asset(
+                    'assets/images/kembali.png',
+                  ).image,
                 ),
               ),
             ),
           ),
-          Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(180, 5, 0, 0),
+        ),
+        title: Align(
+          alignment: Alignment.centerLeft,
+          child: Padding(
+            padding: EdgeInsetsDirectional.fromSTEB(190, 5, 0, 0),
             child: Container(
               width: 160,
               height: 40,
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: Color.fromARGB(0, 255, 255, 255),
               ),
               child: Align(
                 alignment: AlignmentDirectional(-0.25, 0),
                 child: Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(1, 0, 0, 0),
                   child: Text(
-                    'Pemesanan',
+                    'Transaksi',
                     style: TextStyle(
                       fontFamily: 'Merienda One',
-                      fontSize: 36,
+                      fontSize: 30,
                       fontWeight: FontWeight.bold,
+                      color: Colors.black,
                     ),
                   ),
                 ),
               ),
             ),
           ),
-        ],
+        ),
       ),
       key: scaffoldKey,
       backgroundColor: Colors.white,
       body: SafeArea(
         child: SingleChildScrollView(
-          child: GestureDetector(
-            onTap: () => FocusScope.of(context).unfocus(),
+          child: Padding(
+            padding: const EdgeInsets.only(top: 30),
             child: Column(
               mainAxisSize: MainAxisSize.max,
               children: [
@@ -154,23 +157,37 @@ class _PemesananState extends State<Pemesanan> {
                 ),
                 Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
-                  child: ElevatedButton(
-                    onPressed: () {
-                      widget.data.data.map((data) {
-                        ApiService().pesan(data.barangId, alamat.text,
-                            data.jumlah, nama.text, widget.total);
-                      }).toList();
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => TransaksiPage()),
-                      );
-                    },
-                    child: Text(
-                      'Pesan',
-                      style: TextStyle(
-                        fontFamily: 'Roboto Slab',
-                        fontSize: 24,
+                  child: Container(
+                    width: 450,
+                    height: 50,
+                    decoration: BoxDecoration(
+                      color: Color(0xFF700BEF),
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                    child: TextButton(
+                      onPressed: () {
+                        if (alamat.text.isEmpty) {
+                          Alert(context: context, desc: "alamat wajib di isi")
+                              .show();
+                          return;
+                        }
+                        widget.data.data.map((data) {
+                          ApiService().pesan(data.barangId, alamat.text,
+                              data.jumlah, nama.text, widget.total);
+                        }).toList();
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => TransaksiPage()),
+                        );
+                      },
+                      child: Text(
+                        'pesan',
+                        style: TextStyle(
+                          fontFamily: 'Poppins',
+                          fontSize: 18,
+                          color: Colors.white,
+                        ),
                       ),
                     ),
                   ),

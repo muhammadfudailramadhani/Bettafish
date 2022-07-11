@@ -3,14 +3,19 @@ import 'package:betta_fish/model/popular_model.dart';
 import 'package:betta_fish/model/rekomedasi_model.dart';
 import 'package:betta_fish/page/components/Card2Row.dart';
 import 'package:betta_fish/page/components/Card3row.dart';
-// import 'package:betta_fish/page/components/CardAppbar.dart';
 import 'package:betta_fish/page/components/CardNavbar.dart';
+// import 'package:betta_fish/page/components/CardAppbar.dart';
+// import 'package:betta_fish/page/components/CardNavbar.dart';
 // import 'package:betta_fish/page/components/CardNavbar2.dart';
 import 'package:betta_fish/page/components/CardRow.dart';
 import 'package:betta_fish/page/page/Search.dart';
 import 'package:betta_fish/page/page/category.dart';
+import 'package:betta_fish/page/page/profile.dart';
 import 'package:betta_fish/page/proses%20pemesanan/keranjang.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
+import 'package:betta_fish/model/usermodel.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -18,6 +23,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  var user;
   final scaffoldKey = GlobalKey<ScaffoldState>();
   List category = [
     "rosetail",
@@ -41,6 +47,7 @@ class _HomeState extends State<Home> {
     rekomedasi = ApiService().rekomendasi();
     popular = ApiService()
         .popular(); // untuk mengambil data dari API dan mengirimkan ke model PopularModel dan RekomendasiModel
+    user = ApiService().getUser();
     super.initState();
   }
 
@@ -49,6 +56,13 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
     return Scaffold(
+      bottomNavigationBar: Container(
+        height: 80,
+        width: MediaQuery.of(context).size.width,
+        child: Column(
+          children: [CardNavbar()],
+        ),
+      ),
       key: scaffoldKey,
       backgroundColor: Colors.white,
       body: Scaffold(
@@ -62,9 +76,55 @@ class _HomeState extends State<Home> {
                   padding: EdgeInsetsDirectional.fromSTEB(10, 3, 0, 0),
                   child: InkWell(
                     onTap: () {
+                      
+                      // Alert(
+                      //     context: context,
+                      //     // type: AlertType.success,
+                      //     // title: "Profile",
+                      //     content: Column(
+                      //       children: [
+                      //         Container(
+                      //           height: 20,
+                      //           width: 20,
+                      //           child: Icon(
+                      //             Icons.person,
+                      //             color: Colors.black,
+                      //           ),
+                      //         ),
+                      //         Padding(
+                      //           padding: const EdgeInsets.only(top: 20),
+                      //           child: Text(
+                      //             "M fudail fudail",
+                      //             style: TextStyle(
+                      //               color: Colors.black,
+                      //             ),
+                      //           ),
+                      //         ),
+                      //         Text(
+                      //           "0283746587",
+                      //           style: TextStyle(
+                      //             color: Colors.black,
+                      //           ),
+                      //         ),
+                      //       ],
+                      //     )
+                      //     // buttons: [
+                      //     //   DialogButton(
+                      //     //     child: Text(
+                      //     //       "ok",
+                      //     //       style:
+                      //     //           TextStyle(color: Colors.white, fontSize: 14),
+                      //     //     ),
+                      //     //     onPressed: () => Navigator.push(context,
+                      //     //         MaterialPageRoute(builder: (context) {
+                      //     //       return Keranjang();
+                      //     //     })),
+                      //     //   )
+                      //     // ],
+                      //     ).show();
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => Home()),
+                        MaterialPageRoute(builder: (context) => Profile()),
                       );
                     },
                     child: Container(
@@ -114,16 +174,16 @@ class _HomeState extends State<Home> {
                           icon: Icon(Icons.cancel))
                     ],
                   )
-                : InkWell(
-                    onTap: () {
-                      setState(() {
-                        show = true;
-                      }); // ketika di tekan maka container search akan ditampilkan  dan bisa di isi data
-                    },
-                    child: Align(
-                      alignment: AlignmentDirectional(-1, -0.9),
-                      child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(450, 12, 10, 0),
+                : Align(
+                    alignment: AlignmentDirectional(-1, -0.9),
+                    child: Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(450, 12, 10, 0),
+                      child: InkWell(
+                        onTap: () {
+                          setState(() {
+                            show = true;
+                          }); // ketika di tekan maka container search akan ditampilkan  dan bisa di isi data
+                        },
                         child: Container(
                           width: 30,
                           height: 30,
@@ -301,8 +361,6 @@ class _HomeState extends State<Home> {
                       }, //
                       future: popular,
                     ), // future builder untuk mengambil data dari api dan menampilkannya di halaman ini dengan menggunakan future builder
-
-                    CardNavbar(),
                   ],
                 ),
               ),
@@ -337,14 +395,26 @@ class _HomeState extends State<Home> {
     return Padding(
       padding: EdgeInsets.only(top: 20, bottom: 0, left: 0, right: 0),
       child: Container(
-        height: width / 1,
-        width: MediaQuery.of(context).size.width,
+        height: width / 0.2,
+        width: 300,
         child: Padding(
           padding: const EdgeInsets.only(top: 20, bottom: 0, left: 0, right: 0),
-          child: ListView(
-            shrinkWrap: true,
-            scrollDirection: Axis.vertical,
-            children: data.data.asMap().entries.map((data) {
+          child: CarouselSlider(
+            options: CarouselOptions(
+              
+              height: 50,
+              autoPlay: true,
+              aspectRatio: 16 / 9,
+              viewportFraction: 0.2 * 0.8,
+              initialPage: 3,
+              enableInfiniteScroll: true,
+              reverse: false,
+              autoPlayInterval: Duration(seconds: 4),
+              autoPlayAnimationDuration: Duration(milliseconds: 800),
+              autoPlayCurve: Curves.fastOutSlowIn,
+              scrollDirection: Axis.vertical
+            ),
+            items: data.data.asMap().entries.map((data) {
               return Row(
                 children: [
                   Card2Row(
@@ -357,8 +427,27 @@ class _HomeState extends State<Home> {
                   ),
                 ],
               );
-            }).toList(), //untuk mengambil data dari data.value yang ada di PopularModel
+            }).toList(),
           ),
+
+          // child: ListView(
+          //   shrinkWrap: true,
+          //   scrollDirection: Axis.vertical,
+          //   children: data.data.asMap().entries.map((data) {
+          //     return Row(
+          //       children: [
+          //         Card2Row(
+          //           data: data.value,
+          //           i: data.key,
+          //         ), //datanya diambil dari data.value yang ada di PopularModel
+          //         Card3Row(
+          //           data: data.value,
+          //           i: data.key,
+          //         ),
+          //       ],
+          //     );
+          //   }).toList(), //untuk mengambil data dari data.value yang ada di PopularModel
+          // ),
         ),
       ),
     );
@@ -366,24 +455,46 @@ class _HomeState extends State<Home> {
 
   Widget _rekomendasiBuilder(Rekomendasi data, width) {
     return Padding(
-      padding: EdgeInsets.only(top: 20, bottom: 0, left: 0, right: 0),
+      padding: EdgeInsets.only(top: 20, bottom: 0, left: 40, right: 0),
       child: Container(
         height: width / 1.4,
         width: MediaQuery.of(context).size.width,
-        child: ListView(
-          shrinkWrap: true,
-          scrollDirection: Axis.horizontal,
-          children: data.data.asMap().entries.map(
-              (data) //untuk mengambil data dari data.value yang ada di RekomendasiModel dan menampilkan datanya dalam bentuk listview dengan menggunakan map dan entries
-              {
+
+        child: CarouselSlider(
+          options: CarouselOptions(
+            // padEnds: true,
+            height: width / 1.4,
+            autoPlay: true,
+            // aspectRatio: 15 / 9,
+            viewportFraction: 0.3 * 1.5,
+            initialPage: 3,
+            enableInfiniteScroll: true,
+            reverse: false,
+            autoPlayInterval: Duration(seconds: 4),
+            autoPlayAnimationDuration: Duration(milliseconds: 800),
+            autoPlayCurve: Curves.fastOutSlowIn,
+          ),
+          items: data.data.asMap().entries.map((data) {
             return CardRow(
-              data: data
-                  .value, //data diambil dari data.value yang ada di RekomendasiModel dan menampilkan data dari data.value yang ada di RekomendasiModel yang ada di api_service.dart Rekomendasi dan mengirimkan ke model RekomendasiModel
-              i: data
-                  .key, //data diambil dari data.key yang ada di RekomendasiModel untuk mengambil index dari data yang ada di RekomendasiModel dan mengirimkan ke CardRow
+              data: data.value,
+              i: data.key,
             );
           }).toList(),
         ),
+        // child: ListView(
+        //   shrinkWrap: true,
+        //   scrollDirection: Axis.horizontal,
+        //   children: data.data.asMap().entries.map(
+        //       (data) //untuk mengambil data dari data.value yang ada di RekomendasiModel dan menampilkan datanya dalam bentuk listview dengan menggunakan map dan entries
+        //       {
+        //     return CardRow(
+        //       data: data
+        //           .value, //data diambil dari data.value yang ada di RekomendasiModel dan menampilkan data dari data.value yang ada di RekomendasiModel yang ada di api_service.dart Rekomendasi dan mengirimkan ke model RekomendasiModel
+        //       i: data
+        //           .key, //data diambil dari data.key yang ada di RekomendasiModel untuk mengambil index dari data yang ada di RekomendasiModel dan mengirimkan ke CardRow
+        //     );
+        //   }).toList(),
+        // ),
       ),
     );
   }

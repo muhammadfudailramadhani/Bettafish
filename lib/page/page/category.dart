@@ -192,9 +192,17 @@ class _CategoryState extends State<Category> {
           if (snapshot.hasData)
             return _builder(snapshot
                 .data); // jika data sudah di dapat dari API akan menampilkan halaman ini
-          return Center(
-            child: Text("kosong"),
-          ); // jika tidak ada data yang di dapat dari API  menampilkan kosong
+          return Container(
+            child: AlertDialog(
+              title: Text("info",
+                  style: TextStyle(
+                    fontFamily: "Roboto",
+                    fontSize: 20,
+                    color: Color.fromARGB(255, 255, 0, 0),
+                  )),
+              content: Text("Stock kosong"),
+            ),
+          );
         },
       ),
     );
@@ -231,11 +239,17 @@ class _CategoryState extends State<Category> {
               ),
             ),
             data.data.isEmpty // jika data kosong
-                ? Center(
-                    child: Text(
-                    "kosong",
-                    style: TextStyle(fontSize: 30),
-                  )) //akan menampilkan kosong jika data kosong
+                ? Container(
+                    child: AlertDialog(
+                      title: Text("info",
+                          style: TextStyle(
+                            fontFamily: "Roboto",
+                            fontSize: 20,
+                            color: Color.fromARGB(255, 255, 0, 0),
+                          )),
+                      content: Text("Stock kosong"),
+                    ),
+                  ) //akan menampilkan kosong jika data kosong
                 : StaggeredGrid.count(
                     crossAxisCount: 2,
                     mainAxisSpacing: 60,

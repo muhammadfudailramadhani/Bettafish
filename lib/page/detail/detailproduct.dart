@@ -15,6 +15,7 @@ class DetailProduck extends StatefulWidget {
 
 class _DetailProduckState extends State<DetailProduck> {
   PageController pageViewController = PageController();
+  int total = 1;
   final scaffoldKey = GlobalKey<ScaffoldState>();
   bool show = false;
   @override
@@ -212,7 +213,8 @@ class _DetailProduckState extends State<DetailProduck> {
                                                   width: 310,
                                                   height: 620,
                                                   decoration: BoxDecoration(
-                                                    color: Color.fromARGB(0, 46, 8, 128),
+                                                    color: Color.fromARGB(
+                                                        0, 46, 8, 128),
                                                     borderRadius:
                                                         BorderRadius.only(
                                                       bottomLeft:
@@ -383,64 +385,102 @@ class _DetailProduckState extends State<DetailProduck> {
                                                             ),
                                                           ),
                                                         ),
-                                                     
 
                                                         Padding(
-                                                          padding: const  EdgeInsets.only(right: 120, top: 20),
+                                                          padding:
+                                                              const EdgeInsets
+                                                                      .only(
+                                                                  right: 120,
+                                                                  top: 20),
                                                           child: Align(
-                                                            alignment: Alignment.center,
+                                                            alignment: Alignment
+                                                                .center,
                                                             child: Container(
                                                               height: 40,
                                                               width: 130,
-                                                              decoration: BoxDecoration(
-                                                                color: Color.fromARGB(157, 255, 225, 0),
-                                                               boxShadow:  [
-                                                                BoxShadow(
-                                                                    color: Color.fromARGB(65, 0, 0, 0),
+                                                              decoration:
+                                                                  BoxDecoration(
+                                                                color: Color
+                                                                    .fromARGB(
+                                                                        157,
+                                                                        255,
+                                                                        225,
+                                                                        0),
+                                                                boxShadow: [
+                                                                  BoxShadow(
+                                                                    color: Color
+                                                                        .fromARGB(
+                                                                            65,
+                                                                            0,
+                                                                            0,
+                                                                            0),
                                                                     blurRadius:
                                                                         4.0,
                                                                     spreadRadius:
                                                                         4.0,
-                                                                    offset: Offset(
-                                                                        0.0,
-                                                                        0.0),
+                                                                    offset:
+                                                                        Offset(
+                                                                            0.0,
+                                                                            0.0),
                                                                   ),
                                                                 ],
                                                                 borderRadius:
-                                                                    BorderRadius.only(
-                                                                  bottomLeft:
-                                                                      Radius.circular(20),
-                                                                  bottomRight:
-                                                                      Radius.circular(20),
-                                                                  topLeft:
-                                                                      Radius.circular(20),
-                                                                  topRight:
-                                                                      Radius.circular(20),
+                                                                    BorderRadius
+                                                                        .only(
+                                                                  bottomLeft: Radius
+                                                                      .circular(
+                                                                          20),
+                                                                  bottomRight: Radius
+                                                                      .circular(
+                                                                          20),
+                                                                  topLeft: Radius
+                                                                      .circular(
+                                                                          20),
+                                                                  topRight: Radius
+                                                                      .circular(
+                                                                          20),
                                                                 ),
-                                                                
                                                               ),
                                                               child: Padding(
-                                                                padding: const EdgeInsets.only( left: 20, right: 0),
+                                                                padding:
+                                                                    const EdgeInsets
+                                                                            .only(
+                                                                        left:
+                                                                            20,
+                                                                        right:
+                                                                            0),
                                                                 child: Row(
                                                                   children: [
                                                                     Text(
                                                                       'stock:',
-                                                                      style: TextStyle(
+                                                                      style:
+                                                                          TextStyle(
                                                                         fontFamily:
                                                                             'Montaga',
-                                                                        color: Color.fromARGB(255, 0, 0, 0),
-                                                                        fontSize: 20,
+                                                                        color: Color.fromARGB(
+                                                                            255,
+                                                                            0,
+                                                                            0,
+                                                                            0),
+                                                                        fontSize:
+                                                                            20,
                                                                         fontWeight:
                                                                             FontWeight.w600,
                                                                       ),
                                                                     ),
-                                                                     Text(
-                                                                      '230',
-                                                                      style: TextStyle(
+                                                                    Text(
+                                                                      '${widget.data.totalBarang}',
+                                                                      style:
+                                                                          TextStyle(
                                                                         fontFamily:
                                                                             'Montaga',
-                                                                        color: Color.fromARGB(255, 157, 50, 0),
-                                                                        fontSize: 20,
+                                                                        color: Color.fromARGB(
+                                                                            255,
+                                                                            157,
+                                                                            50,
+                                                                            0),
+                                                                        fontSize:
+                                                                            20,
                                                                         fontWeight:
                                                                             FontWeight.w600,
                                                                       ),
@@ -448,7 +488,6 @@ class _DetailProduckState extends State<DetailProduck> {
                                                                   ],
                                                                 ),
                                                               ),
-                                                              
                                                             ),
                                                           ),
                                                         ),
@@ -458,215 +497,284 @@ class _DetailProduckState extends State<DetailProduck> {
                                                             Container(
                                                               height: 40,
                                                               width: 40,
-                                                              decoration: BoxDecoration(
+                                                              decoration:
+                                                                  BoxDecoration(
                                                                 boxShadow: [
                                                                   BoxShadow(
-                                                                    color: Color.fromARGB(65, 0, 0, 0),
+                                                                    color: Color
+                                                                        .fromARGB(
+                                                                            65,
+                                                                            0,
+                                                                            0,
+                                                                            0),
                                                                     blurRadius:
                                                                         4.0,
                                                                     spreadRadius:
                                                                         4.0,
-                                                                    offset: Offset(
-                                                                        0.0,
-                                                                        0.0),
+                                                                    offset:
+                                                                        Offset(
+                                                                            0.0,
+                                                                            0.0),
                                                                   ),
                                                                 ],
-                                                                color: Color.fromARGB(157, 255, 225, 0),
+                                                                color: Color
+                                                                    .fromARGB(
+                                                                        157,
+                                                                        255,
+                                                                        225,
+                                                                        0),
                                                                 borderRadius:
-                                                                    BorderRadius.only(
-                                                                  topLeft:
-                                                                      Radius.circular(
+                                                                    BorderRadius
+                                                                        .only(
+                                                                  topLeft: Radius
+                                                                      .circular(
                                                                           30),
-                                                                  topRight:
-                                                                      Radius.circular(
+                                                                  topRight: Radius
+                                                                      .circular(
                                                                           30),
-                                                                  bottomLeft:
-                                                                      Radius.circular(
+                                                                  bottomLeft: Radius
+                                                                      .circular(
                                                                           30),
-                                                                  bottomRight:
-                                                            
-                                                                      Radius.circular(
+                                                                  bottomRight: Radius
+                                                                      .circular(
                                                                           30),
                                                                 ),
-                                                              
                                                               ),
-                                                              child: Align(
-                                                                alignment: Alignment.center,
-                                                                child: Text(
-                                                                  '+',
-                                                                  style: TextStyle(
-                                                                      fontFamily:
-                                                                          'Montaga',
-                                                                      color: Color(
-                                                                          0x90FF0000),
-                                                                      fontSize: 24,
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .w400),
+                                                              child: InkWell(
+                                                                onTap: () {
+                                                                  setState(() {
+                                                                    total++;
+                                                                    widget.data
+                                                                        .totalBarang--;
+                                                                  });
+                                                                },
+                                                                child: Align(
+                                                                  alignment:
+                                                                      Alignment
+                                                                          .center,
+                                                                  child: Text(
+                                                                    '+',
+                                                                    style: TextStyle(
+                                                                        fontFamily:
+                                                                            'Montaga',
+                                                                        color: Color(
+                                                                            0x90FF0000),
+                                                                        fontSize:
+                                                                            24,
+                                                                        fontWeight:
+                                                                            FontWeight.w400),
+                                                                  ),
                                                                 ),
                                                               ),
                                                             ),
-                                                              Padding(
-                                                                padding: const EdgeInsets.only(left: 5),
-                                                                child: Container(
-                                                                  height: 40,
-                                                                  width: 80,
-                                                                  decoration: BoxDecoration(
-                                                                    boxShadow: [
-                                                                      BoxShadow(
-                                                                        color: Color.fromARGB(65, 0, 0, 0),
-                                                                        blurRadius:
-                                                                            4.0,
-                                                                        spreadRadius:
-                                                                            4.0,
-                                                                        offset: Offset(
-                                                                            0.0,
-                                                                            0.0),
-                                                                      ),
-                                                                    ],
-                                                                    color: Color.fromARGB(157, 255, 225, 0),
-                                                                    borderRadius:
-                                                                        BorderRadius.only(
-                                                                      topLeft:
-                                                                          Radius.circular(
-                                                                              10),
-                                                                      topRight:
-                                                                          Radius.circular(
-                                                                              10),
-                                                                      bottomLeft:
-                                                                          Radius.circular(
-                                                                              10),
-                                                                      bottomRight:
-                                                            
-                                                                          Radius.circular(
-                                                                              10),
+                                                            Padding(
+                                                              padding:
+                                                                  const EdgeInsets
+                                                                          .only(
+                                                                      left: 5),
+                                                              child: Container(
+                                                                height: 40,
+                                                                width: 80,
+                                                                decoration:
+                                                                    BoxDecoration(
+                                                                  boxShadow: [
+                                                                    BoxShadow(
+                                                                      color: Color
+                                                                          .fromARGB(
+                                                                              65,
+                                                                              0,
+                                                                              0,
+                                                                              0),
+                                                                      blurRadius:
+                                                                          4.0,
+                                                                      spreadRadius:
+                                                                          4.0,
+                                                                      offset: Offset(
+                                                                          0.0,
+                                                                          0.0),
                                                                     ),
-                                                                  
+                                                                  ],
+                                                                  color: Color
+                                                                      .fromARGB(
+                                                                          157,
+                                                                          255,
+                                                                          225,
+                                                                          0),
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .only(
+                                                                    topLeft: Radius
+                                                                        .circular(
+                                                                            10),
+                                                                    topRight: Radius
+                                                                        .circular(
+                                                                            10),
+                                                                    bottomLeft:
+                                                                        Radius.circular(
+                                                                            10),
+                                                                    bottomRight:
+                                                                        Radius.circular(
+                                                                            10),
                                                                   ),
+                                                                ),
+                                                                child: Align(
+                                                                  alignment:
+                                                                      Alignment
+                                                                          .center,
+                                                                  child: Text(
+                                                                    total
+                                                                        .toString(),
+                                                                    style: TextStyle(
+                                                                        fontFamily:
+                                                                            'Montaga',
+                                                                        color: Color(
+                                                                            0x90FF0000),
+                                                                        fontSize:
+                                                                            24,
+                                                                        fontWeight:
+                                                                            FontWeight.w400),
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                            Padding(
+                                                              padding:
+                                                                  const EdgeInsets
+                                                                          .only(
+                                                                      left: 5),
+                                                              child: Container(
+                                                                height: 40,
+                                                                width: 40,
+                                                                decoration:
+                                                                    BoxDecoration(
+                                                                  boxShadow: [
+                                                                    BoxShadow(
+                                                                      color: Color
+                                                                          .fromARGB(
+                                                                              65,
+                                                                              0,
+                                                                              0,
+                                                                              0),
+                                                                      blurRadius:
+                                                                          4.0,
+                                                                      spreadRadius:
+                                                                          4.0,
+                                                                      offset: Offset(
+                                                                          0.0,
+                                                                          0.0),
+                                                                    ),
+                                                                  ],
+                                                                  color: Color
+                                                                      .fromARGB(
+                                                                          157,
+                                                                          255,
+                                                                          225,
+                                                                          0),
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .only(
+                                                                    topLeft: Radius
+                                                                        .circular(
+                                                                            30),
+                                                                    topRight: Radius
+                                                                        .circular(
+                                                                            30),
+                                                                    bottomLeft:
+                                                                        Radius.circular(
+                                                                            30),
+                                                                    bottomRight:
+                                                                        Radius.circular(
+                                                                            30),
+                                                                  ),
+                                                                ),
+                                                                child: InkWell(
+                                                                  onTap: () {
+                                                                    setState(
+                                                                        () {
+                                                                      if (total !=
+                                                                          1) {
+                                                                        total--;
+                                                                        widget.data
+                                                                            .totalBarang++;
+                                                                      }
+                                                                    });
+                                                                  },
                                                                   child: Align(
-                                                                    alignment: Alignment.center,
+                                                                    alignment:
+                                                                        Alignment
+                                                                            .center,
                                                                     child: Text(
-                                                                      '2',
+                                                                      '-',
                                                                       style: TextStyle(
                                                                           fontFamily:
                                                                               'Montaga',
                                                                           color: Color(
                                                                               0x90FF0000),
-                                                                          fontSize: 24,
+                                                                          fontSize:
+                                                                              24,
                                                                           fontWeight:
-                                                                              FontWeight
-                                                                                  .w400),
+                                                                              FontWeight.w400),
                                                                     ),
                                                                   ),
                                                                 ),
                                                               ),
-                                                               Padding(
-                                                                 padding: const EdgeInsets.only(left: 5),
-                                                                 child: Container(
-                                                                   height: 40,
-                                                                   width: 40,
-                                                                   decoration: BoxDecoration(
-                                                                     boxShadow: [
-                                                                       BoxShadow(
-                                                                         color: Color.fromARGB(65, 0, 0, 0),
-                                                                         blurRadius:
-                                                                             4.0,
-                                                                         spreadRadius:
-                                                                             4.0,
-                                                                         offset: Offset(
-                                                                             0.0,
-                                                                             0.0),
-                                                                       ),
-                                                                     ],
-                                                                     color: Color.fromARGB(157, 255, 225, 0),
-                                                                     borderRadius:
-                                                                         BorderRadius.only(
-                                                                       topLeft:
-                                                                           Radius.circular(
-                                                                               30),
-                                                                       topRight:
-                                                                           Radius.circular(
-                                                                               30),
-                                                                       bottomLeft:
-                                                                           Radius.circular(
-                                                                               30),
-                                                                       bottomRight:
-                                                            
-                                                                           Radius.circular(
-                                                                               30),
-                                                                     ),
-                                                                   
-                                                                   ),
-                                                                   child: Align(
-                                                                    alignment: Alignment.center,
-                                                                     child: Text(
-                                                                       '-',
-                                                                       style: TextStyle(
-                                                                           fontFamily:
-                                                                               'Montaga',
-                                                                           color: Color(
-                                                                               0x90FF0000),
-                                                                           fontSize: 24,
-                                                                           fontWeight:
-                                                                               FontWeight
-                                                                                   .w400),
-                                                                     ),
-                                                                   ),
-                                                                 ),
-                                                               ),
-                                                                  InkWell(
-                                                          onTap: () {
-                                                            Alert(
-                                                              context: context,
-                                                              type: AlertType
-                                                                  .success,
-                                                              title: "Berhasil",
-                                                              desc:
-                                                                  "Barang telah ditambahkan ke keranjang",
-                                                              buttons: [
-                                                                DialogButton(
-                                                                  child: Text(
-                                                                    "ok",
-                                                                    style: TextStyle(
-                                                                        color: Colors
-                                                                            .white,
-                                                                        fontSize:
-                                                                            14),
-                                                                  ),
-                                                                  onPressed: () => Navigator.push(
+                                                            ),
+                                                            InkWell(
+                                                              onTap: () {
+                                                                Alert(
+                                                                  context:
                                                                       context,
-                                                                      MaterialPageRoute(
-                                                                          builder:
+                                                                  type: AlertType
+                                                                      .success,
+                                                                  title:
+                                                                      "Berhasil",
+                                                                  desc:
+                                                                      "Barang telah ditambahkan ke keranjang",
+                                                                  buttons: [
+                                                                    DialogButton(
+                                                                      child:
+                                                                          Text(
+                                                                        "ok",
+                                                                        style: TextStyle(
+                                                                            color:
+                                                                                Colors.white,
+                                                                            fontSize: 14),
+                                                                      ),
+                                                                      onPressed: () => Navigator.push(
+                                                                          context,
+                                                                          MaterialPageRoute(builder:
                                                                               (context) {
-                                                                    return Keranjang();
-                                                                  })),
-                                                                )
-                                                              ],
-                                                            ).show();
-                                                            ApiService()
-                                                                .addToCart(
-                                                                    widget.data
-                                                                        .id);
-                                                          },
-                                                          child: Container(
-                                                            width: 120,
-                                                            height: 80,
-                                                            decoration:
-                                                                BoxDecoration(
-                                                              color: Color(
-                                                                  0x00EEEEEE),
-                                                              image:
-                                                                  DecorationImage(
-                                                                fit: BoxFit
-                                                                    .cover,
-                                                                image: Image
-                                                                    .asset(
-                                                                  'assets/images/plus.png',
-                                                                ).image,
+                                                                        return Keranjang();
+                                                                      })),
+                                                                    )
+                                                                  ],
+                                                                ).show();
+                                                                ApiService()
+                                                                    .addToCart(
+                                                                        widget
+                                                                            .data
+                                                                            .id,
+                                                                        total);
+                                                              },
+                                                              child: Container(
+                                                                width: 120,
+                                                                height: 80,
+                                                                decoration:
+                                                                    BoxDecoration(
+                                                                  color: Color(
+                                                                      0x00EEEEEE),
+                                                                  image:
+                                                                      DecorationImage(
+                                                                    fit: BoxFit
+                                                                        .cover,
+                                                                    image: Image
+                                                                        .asset(
+                                                                      'assets/images/plus.png',
+                                                                    ).image,
+                                                                  ),
+                                                                ),
                                                               ),
                                                             ),
-                                                          ),
-                                                        ),
                                                           ],
                                                         ),
                                                       ],

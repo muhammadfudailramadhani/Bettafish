@@ -1,6 +1,9 @@
 import 'package:betta_fish/api_service.dart';
+import 'package:betta_fish/model/transaksi_model.dart';
+import 'package:betta_fish/page/proses%20pemesanan/transaksi.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class CardTransaksi extends StatefulWidget {
@@ -8,6 +11,20 @@ class CardTransaksi extends StatefulWidget {
   CardTransaksi({required this.data});
   @override
   _CardTransaksiState createState() => _CardTransaksiState();
+}
+
+deleteKeranjang(id) async {
+  Uri url = Uri.parse("$baseUrl/transaksi/delete/$id");
+  SharedPreferences storage = await SharedPreferences.getInstance();
+  headers["Authorization"] = "Bearer ${storage.getString("token")}";
+  final res = await http.delete(url, headers: headers);
+  if (res.statusCode == 200) {
+    print("berhasil");
+  } else {
+    print(res.statusCode);
+    print(res.body);
+    print("gagal");
+  }
 }
 
 class _CardTransaksiState extends State<CardTransaksi> {
@@ -74,21 +91,36 @@ class _CardTransaksiState extends State<CardTransaksi> {
                   ),
                 ),
                 IconButton(
-                    onPressed: () async {
-                      Uri url = Uri.parse(
-                          "$baseUrl/transaksi/delete/${widget.data.id}");
-                      SharedPreferences storage =
-                          await SharedPreferences.getInstance();
-                      headers["Authorization"] =
-                          "Bearer ${storage.getString("token")}";
-                      final res = await http.delete(url, headers: headers);
-                      if (res.statusCode == 200) {
-                        print("berhasil");
-                      } else {
-                        print(res.statusCode);
-                        print(res.body);
-                        print("gagal");
-                      }
+                    onPressed: () {
+                      Alert(
+                        context: context,
+                        type: AlertType.warning,
+                        title: "Hapus Item",
+                        desc:
+                            "Apakah anda yakin ingin menghapus item ini dari keranjang?",
+                        buttons: [
+                          DialogButton(
+                            child: Text(
+                              "tidak",
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 14),
+                            ),
+                            onPressed: () => Navigator.pop(context),
+                          
+                          ),
+                          DialogButton(
+                            child: Text(
+                              "yes",
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 14),
+                            ),
+                            onPressed: () {
+                              deleteKeranjang(widget.data.id);
+                              Navigator.pop(context);
+                            },
+                          )
+                        ],
+                      ).show();
                     },
                     icon: Icon(Icons.delete))
               ],

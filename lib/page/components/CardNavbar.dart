@@ -1,6 +1,7 @@
 import 'package:betta_fish/page/page/home.dart';
 import 'package:betta_fish/page/page/login.dart';
 import 'package:betta_fish/page/page/register.dart';
+import 'package:betta_fish/page/page/welcome.dart';
 import 'package:betta_fish/page/proses%20pemesanan/transaksi.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -83,9 +84,10 @@ class _CardNavbarState extends State<CardNavbar> {
           InkWell(
             onTap: () async {
               SharedPreferences storage = await SharedPreferences.getInstance();
+              
               storage.remove("token");
               Navigator.of(context).pushReplacement(
-                  MaterialPageRoute(builder: (context) => Login()));
+                  MaterialPageRoute(builder: (context) => Welcome()));
             },
             child: Padding(
               padding: EdgeInsetsDirectional.fromSTEB(175, 10, 0, 10),

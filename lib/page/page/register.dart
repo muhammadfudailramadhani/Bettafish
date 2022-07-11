@@ -42,13 +42,37 @@ class _RegisterState extends State<Register> {
       var token = jsonDecode(
           res.body)["token"]; // untuk menampilkan token yang di dapat dari API
       storage.setString("token", token);
-      Navigator.of(context)
-          .pushReplacement(MaterialPageRoute(builder: (context) => Home()));
+
+    
+      Alert(
+        context: context,
+        type: AlertType.success,
+        title: "Register Success",
+        desc: "Selamat datang",
+        buttons: [
+          DialogButton(
+            child: Text(
+              "ok",
+              style: TextStyle(color: Colors.white, fontSize: 14),
+            ),
+            onPressed: () =>
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+              return Home();
+            })),
+          )
+        ],
+      ).show();
       print(token);
       return true;
     } else {
       setState(() {
-        error = jsonDecode(res.body)["message"];
+        // error = jsonDecode(res.body)["message"];
+        Alert(
+                context: context,
+                type: AlertType.error,
+                title: "Error",
+                desc: jsonDecode(res.body)["message"])
+            .show();
         print(error);
       });
       return true;
@@ -204,11 +228,11 @@ class _RegisterState extends State<Register> {
                           ],
                         ),
                       ),
-                      Text(error == "username telah digunakan" ? error : ""),
+                      Text(error == "username telah digunakan" ? error : " "),
 
                       Padding(
                         padding: const EdgeInsets.only(
-                            top: 40, bottom: 0, left: 0, right: 0),
+                            top: 5, bottom: 0, left: 0, right: 0),
                         child: Column(
                           children: [
                             Container(
@@ -238,33 +262,37 @@ class _RegisterState extends State<Register> {
                                       ),
                                     ),
                                   ),
-                                  Container(
-                                    width: 290,
-                                    height: 100,
-                                    decoration: BoxDecoration(
-                                      color: Color(0x00EEEEEE),
-                                      borderRadius: BorderRadius.only(
-                                        bottomLeft: Radius.circular(0),
-                                        bottomRight: Radius.circular(30),
-                                        topLeft: Radius.circular(0),
-                                        topRight: Radius.circular(30),
+                                  Padding(
+                                    padding: const EdgeInsets.only(
+                                        top: 20, bottom: 0, left: 0, right: 0),
+                                    child: Container(
+                                      width: 290,
+                                      height: 100,
+                                      decoration: BoxDecoration(
+                                        color: Color(0x00EEEEEE),
+                                        borderRadius: BorderRadius.only(
+                                          bottomLeft: Radius.circular(0),
+                                          bottomRight: Radius.circular(30),
+                                          topLeft: Radius.circular(0),
+                                          topRight: Radius.circular(30),
+                                        ),
                                       ),
-                                    ),
-                                    child: Padding(
-                                      padding: const EdgeInsets.only(
-                                          top: 2,
-                                          bottom: 0,
-                                          left: 10,
-                                          right: 85),
-                                      child: TextFormField(
-                                        controller: phone,
-                                        decoration: InputDecoration(
-                                          border: InputBorder.none,
-                                          hintText: 'Enter your phone',
-                                          hintStyle: GoogleFonts.poppins(
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.w500,
-                                            color: Color(0xFF979797),
+                                      child: Padding(
+                                        padding: const EdgeInsets.only(
+                                            top: 2,
+                                            bottom: 0,
+                                            left: 10,
+                                            right: 85),
+                                        child: TextFormField(
+                                          controller: phone,
+                                          decoration: InputDecoration(
+                                            border: InputBorder.none,
+                                            hintText: 'Enter your phone',
+                                            hintStyle: GoogleFonts.poppins(
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.w500,
+                                              color: Color(0xFF979797),
+                                            ),
                                           ),
                                         ),
                                       ),
@@ -278,135 +306,139 @@ class _RegisterState extends State<Register> {
                       ),
                       if (error == "nomor telepon tidak valid") Text(error),
 
-                      SizedBox(
-                        height: 40,
-                      ),
-                      Container(
-                        width: 400,
-                        height: 50,
-                        decoration: BoxDecoration(
-                          color: Color.fromARGB(105, 255, 255, 255),
-                          borderRadius: BorderRadius.circular(30),
-                        ),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(17, 0, 0, 0),
-                              child: Container(
-                                width: 20,
-                                height: 30,
-                                decoration: BoxDecoration(
-                                  color: Color(0x00EEEEEE),
-                                  image: DecorationImage(
-                                    fit: BoxFit.cover,
-                                    image: Image.asset(
-                                      'assets/images/password.png',
-                                    ).image,
-                                  ),
-                                ),
-                              ),
-                            ),
-                            SizedBox(
-                              height: 40,
-                            ),
-                            Container(
-                              width: 290,
-                              height: 100,
-                              decoration: BoxDecoration(
-                                color: Color(0x00EEEEEE),
-                                borderRadius: BorderRadius.only(
-                                  bottomLeft: Radius.circular(0),
-                                  bottomRight: Radius.circular(30),
-                                  topLeft: Radius.circular(0),
-                                  topRight: Radius.circular(30),
-                                ),
-                              ),
-                              child: Padding(
-                                padding: EdgeInsets.only(
-                                    top: 2, bottom: 0, left: 13, right: 85),
-                                child: TextFormField(
-                                  controller: password,
-                                  decoration: InputDecoration(
-                                    border: InputBorder.none,
-                                    hintText: 'Password',
-                                    hintStyle: GoogleFonts.poppins(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w500,
-                                      color: Color(0xFF979797),
-                                    ),
-                                  ),
-                                  autofocus: false,
-                                  obscureText: true,
-                                  validator: (String? value) {
-                                    if (value == null || value.isEmpty) {
-                                      return 'Please enter password';
-                                    }
-                                    return null;
-                                  },
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      SizedBox(
-                        height: 40,
-                      ),
-                      Container(
-                        width: 400,
-                        height: 50,
-                        decoration: BoxDecoration(
-                          color: Color.fromARGB(105, 255, 255, 255),
-                          borderRadius: BorderRadius.circular(30),
-                        ),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Container(
-                              width: 290,
-                              height: 100,
-                              decoration: BoxDecoration(
-                                color: Color(0x00EEEEEE),
-                                borderRadius: BorderRadius.only(
-                                  bottomLeft: Radius.circular(0),
-                                  bottomRight: Radius.circular(30),
-                                  topLeft: Radius.circular(0),
-                                  topRight: Radius.circular(30),
-                                ),
-                              ),
-                              child: Padding(
-                                padding: EdgeInsets.only(
-                                    top: 2, bottom: 0, left: 50, right: 85),
-                                child: TextFormField(
-                                  controller: role,
-                                  decoration: InputDecoration(
-                                    border: InputBorder.none,
-                                    hintText: 'role',
-                                    hintStyle: GoogleFonts.poppins(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w500,
-                                      color: Color(0xFF979797),
-                                    ),
-                                  ),
-                                  autofocus: false,
-                                  validator: (String? value) {
-                                    if (value == null || value.isEmpty) {
-                                      return 'Please enter role';
-                                    }
-                                    return null;
-                                  },
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      SizedBox(height: 60),
                       Padding(
                         padding: const EdgeInsets.only(
-                            top: 0, bottom: 100, left: 0, right: 0),
+                            top: 20, bottom: 0, left: 0, right: 0),
+                        child: Container(
+                          width: 400,
+                          height: 50,
+                          decoration: BoxDecoration(
+                            color: Color.fromARGB(105, 255, 255, 255),
+                            borderRadius: BorderRadius.circular(30),
+                          ),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Padding(
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(17, 0, 0, 0),
+                                child: Container(
+                                  width: 20,
+                                  height: 30,
+                                  decoration: BoxDecoration(
+                                    color: Color(0x00EEEEEE),
+                                    image: DecorationImage(
+                                      fit: BoxFit.cover,
+                                      image: Image.asset(
+                                        'assets/images/password.png',
+                                      ).image,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                    top: 20, bottom: 0, left: 0, right: 0),
+                                child: Container(
+                                  width: 290,
+                                  height: 100,
+                                  decoration: BoxDecoration(
+                                    color: Color(0x00EEEEEE),
+                                    borderRadius: BorderRadius.only(
+                                      bottomLeft: Radius.circular(0),
+                                      bottomRight: Radius.circular(30),
+                                      topLeft: Radius.circular(0),
+                                      topRight: Radius.circular(30),
+                                    ),
+                                  ),
+                                  child: Padding(
+                                    padding: EdgeInsets.only(
+                                        top: 2, bottom: 0, left: 13, right: 85),
+                                    child: TextFormField(
+                                      controller: password,
+                                      decoration: InputDecoration(
+                                        border: InputBorder.none,
+                                        hintText: 'Password',
+                                        hintStyle: GoogleFonts.poppins(
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w500,
+                                          color: Color(0xFF979797),
+                                        ),
+                                      ),
+                                      autofocus: false,
+                                      obscureText: true,
+                                      validator: (String? value) {
+                                        if (value == null || value.isEmpty) {
+                                          return 'Please enter password';
+                                        }
+                                        return null;
+                                      },
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+
+                      Padding(
+                        padding: const EdgeInsets.only(
+                            top: 20, bottom: 0, left: 0, right: 0),
+                        child: Container(
+                          width: 400,
+                          height: 50,
+                          decoration: BoxDecoration(
+                            color: Color.fromARGB(105, 255, 255, 255),
+                            borderRadius: BorderRadius.circular(30),
+                          ),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Container(
+                                width: 290,
+                                height: 100,
+                                decoration: BoxDecoration(
+                                  color: Color(0x00EEEEEE),
+                                  borderRadius: BorderRadius.only(
+                                    bottomLeft: Radius.circular(0),
+                                    bottomRight: Radius.circular(30),
+                                    topLeft: Radius.circular(0),
+                                    topRight: Radius.circular(30),
+                                  ),
+                                ),
+                                child: Padding(
+                                  padding: EdgeInsets.only(
+                                      top: 2, bottom: 0, left: 50, right: 85),
+                                  child: TextFormField(
+                                    controller: role,
+                                    decoration: InputDecoration(
+                                      border: InputBorder.none,
+                                      hintText: 'role',
+                                      hintStyle: GoogleFonts.poppins(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w500,
+                                        color: Color(0xFF979797),
+                                      ),
+                                    ),
+                                    autofocus: false,
+                                    validator: (String? value) {
+                                      if (value == null || value.isEmpty) {
+                                        return 'Please enter role';
+                                      }
+                                      return null;
+                                    },
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+
+                      Padding(
+                        padding: const EdgeInsets.only(
+                            top: 50, bottom: 50, left: 0, right: 0),
                         child: Container(
                           width: 450,
                           height: 50,
@@ -415,38 +447,28 @@ class _RegisterState extends State<Register> {
                             borderRadius: BorderRadius.circular(30),
                           ),
                           child: TextButton(
-                            onPressed: () {
+                          onPressed: () {
+                            if (username.text.isEmpty || password.text.isEmpty) {
                               Alert(
-                                context: context,
-                                type: AlertType.success,
-                                title: "Register",
-                                desc: "Register Success",
-                                buttons: [
-                                  DialogButton(
-                                    child: Text(
-                                      "OK",
-                                      style: TextStyle(
-                                          color: Colors.white, fontSize: 14),
-                                    ),
-                                    onPressed: () => Navigator.push(context,
-                                        MaterialPageRoute(builder: (context) {
-                                      return Home();
-                                    })),
-                                  )
-                                ],
-                              ).show();
-                              //jika validasi sudah benar maka akan mengirimkan data ke server
-
-                              register();
-                            },
-                            child: Text(
-                              'Register',
-                              style: TextStyle(
-                                fontFamily: 'Poppins',
-                                fontSize: 18,
-                                color: Colors.white,
-                              ),
-                            ),
+                                type: AlertType.error,
+                                  context: context,
+                                  desc: "username atau password tidak boleh kosong").show();
+                              return;
+                            }
+                            register();
+                          },
+                          child: isLoading
+                              ? CircularProgressIndicator(
+                                  color: Colors.white,
+                                )
+                              : Text(
+                                  'Register',
+                                  style: TextStyle(
+                                    fontFamily: 'Poppins',
+                                    fontSize: 18,
+                                    color: Colors.white,
+                                  ),
+                                ),
                           ),
                         ),
                       ),
@@ -459,9 +481,6 @@ class _RegisterState extends State<Register> {
     );
   }
 }
-
-
-
 
 // import 'dart:convert';
 
@@ -560,7 +579,7 @@ class _RegisterState extends State<Register> {
 //                           alignment: AlignmentDirectional(0, 0),
 //                         ),
 //                       ),
-                   
+
 //                       Padding(
 //                         padding: const EdgeInsets.only(top: 20, bottom: 0, left: 0, right: 0),
 //                         child: Text(
@@ -573,7 +592,6 @@ class _RegisterState extends State<Register> {
 //                         ),
 //                       ),
 
-                     
 //                       Container(
 //                         width: 200,
 //                         height: 200,
@@ -595,9 +613,6 @@ class _RegisterState extends State<Register> {
 //                           ),
 //                         ),
 //                       ),
-
-                     
-                      
 
 //                       Padding(
 //                         padding: const EdgeInsets.only(top: 15, bottom: 0, left: 0, right: 0),
@@ -662,7 +677,7 @@ class _RegisterState extends State<Register> {
 //                         ),
 //                       ),
 //                       Text(error == "username telah digunakan" ? error : ""),
-                    
+
 //                       Column(
 //                         children: [
 //                           Container(
@@ -728,8 +743,6 @@ class _RegisterState extends State<Register> {
 //                       ),
 //                       Text(error == "nomer hp telah digunakan" ? error : ""),
 
-                 
-                     
 //                       Container(
 //                         width: 300,
 //                         height: 45,
@@ -757,7 +770,7 @@ class _RegisterState extends State<Register> {
 //                                 ),
 //                               ),
 //                             ),
-                          
+
 //                             Container(
 //                               width: 250,
 //                               height: 100,
@@ -795,11 +808,11 @@ class _RegisterState extends State<Register> {
 //                                 ),
 //                               ),
 //                             ),
-                         
+
 //                           ],
 //                         ),
 //                       ),
-                     
+
 //                       Padding(
 //                         padding: const EdgeInsets.only(top: 15, bottom: 0, left: 0, right: 0),
 //                         child: Container(
@@ -812,7 +825,7 @@ class _RegisterState extends State<Register> {
 //                           child: Row(
 //                             mainAxisSize: MainAxisSize.max,
 //                             children: [
-                            
+
 //                               Container(
 //                                 width: 250,
 //                                 height: 100,
@@ -849,12 +862,12 @@ class _RegisterState extends State<Register> {
 //                                   ),
 //                                 ),
 //                               ),
-                            
+
 //                             ],
 //                           ),
 //                         ),
 //                       ),
-                  
+
 //                       Padding(
 //                         padding: const EdgeInsets.only(
 //                                     top: 30, bottom: 20, left: 0, right: 0),

@@ -8,6 +8,7 @@ import 'package:betta_fish/page/page/home.dart';
 import 'package:betta_fish/page/proses%20pemesanan/keranjang.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 
 // ignore: must_be_immutable
 class Search extends StatefulWidget {
@@ -176,9 +177,20 @@ class _SearchState extends State<Search> {
           if (snapshot.hasData)
             return _builder(
                 snapshot.data, context); // jika data sudah di dapatkan dari API
-          return Center(
-            child: Text("kosong"),
-          ); // menampilkan text kosong
+          return Container(
+            child: AlertDialog(
+              title: Text("info",
+                  style: TextStyle(
+                    fontFamily: "Roboto",
+                    fontSize: 20,
+                    color: Colors.black,
+                  )
+              
+              ),
+              content: Text("tejadi kesalahan"),
+            ),
+            
+          ); 
         },
       ), // sangat membantu developer untuk mengetahui setiap keadaan atau state yang terjadi pada sebuah proses
     );

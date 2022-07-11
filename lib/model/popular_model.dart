@@ -27,6 +27,7 @@ class Datum {
         required this.harga,
         required this.fotoBarang,
         required this.kategori,
+        required this.totalBarang,
         required this.height,
         required this.weight,
         required this.age,
@@ -39,6 +40,7 @@ class Datum {
     String namaBarang;
     int harga;
     String fotoBarang;
+    int totalBarang;
     String kategori;
     int height;
     int weight;
@@ -56,6 +58,7 @@ class Datum {
         height: json["height"],
         weight: json["weight"],
         age: json["age"],
+        totalBarang: json["totalBarang"],
         deskripsi: json["deskripsi"],
         createdAt: DateTime.parse(json["createdAt"]),
         updatedAt: DateTime.parse(json["updatedAt"]),
@@ -66,6 +69,7 @@ class Datum {
         "nama_barang": namaBarang,
         "harga": harga,
         "foto_barang": fotoBarang,
+        "totalbarang": totalBarang,
         "kategori": kategori,
         "height": height,
         "weight": weight,

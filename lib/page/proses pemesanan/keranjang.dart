@@ -1,10 +1,11 @@
 import 'package:betta_fish/api_service.dart';
 import 'package:betta_fish/model/keranjang_model.dart';
-import 'package:betta_fish/page/components/Cardkeranjang.dart';
+// import 'package:betta_fish/page/components/Cardkeranjang.dart';
 import 'package:betta_fish/page/page/home.dart';
 import 'package:betta_fish/page/proses%20pemesanan/pemesanan.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Keranjang extends StatefulWidget {
@@ -20,17 +21,83 @@ class _KeranjangState extends State<Keranjang> {
   @override
   void initState() {
     keranjang = Stream.periodic(Duration(
-            seconds: 20)) // untuk mengambil data dari api setiap 3 detik
+            seconds: 13)) // untuk mengambil data dari api setiap 3 detik
         .asyncMap((event) => ApiService().keranjang());
 
     super.initState();
+  }
+
+  deleteKeranjang(id) async {
+    Uri url = Uri.parse("$baseUrl/keranjang/delete/$id");
+    SharedPreferences storage = await SharedPreferences.getInstance();
+    headers["Authorization"] = "Bearer ${storage.getString("token")}";
+    final res = await http.delete(url, headers: headers);
+    if (res.statusCode == 200) {
+      AlertDialog();
+    } else {
+      print(res.statusCode);
+      print(res.body);
+      print("gagal");
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Keranjang"),
+        backgroundColor: Colors.white,
+        leading: Padding(
+          padding: EdgeInsetsDirectional.fromSTEB(10, 15, 0, 0),
+          child: InkWell(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => Home()),
+              );
+            },
+            child: Container(
+              width: 50,
+              height: 50,
+              decoration: BoxDecoration(
+                color: Color.fromARGB(0, 255, 255, 255),
+                image: DecorationImage(
+                  fit: BoxFit.cover,
+                  image: Image.asset(
+                    'assets/images/kembali.png',
+                  ).image,
+                ),
+              ),
+            ),
+          ),
+        ),
+        title: Align(
+          alignment: Alignment.centerLeft,
+          child: Padding(
+            padding: EdgeInsetsDirectional.fromSTEB(190, 5, 0, 0),
+            child: Container(
+              width: 160,
+              height: 40,
+              decoration: BoxDecoration(
+                color: Color.fromARGB(0, 255, 255, 255),
+              ),
+              child: Align(
+                alignment: AlignmentDirectional(-0.25, 0),
+                child: Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(1, 0, 0, 0),
+                  child: Text(
+                    'Transaksi',
+                    style: TextStyle(
+                      fontFamily: 'Merienda One',
+                      fontSize: 30,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ),
       ),
       key: scaffoldKey,
       backgroundColor: Colors.white,
@@ -75,7 +142,7 @@ class _KeranjangState extends State<Keranjang> {
                     child: ListView.builder(
                       itemCount: data.data.length,
                       itemBuilder: (context, index) {
-                           // setState(() {
+                        // setState(() {
                         //   total+= total + data.data[index].harga ;
                         // });
                         return Container(
@@ -208,6 +275,7 @@ class _KeranjangState extends State<Keranjang> {
                                               ),
                                               InkWell(
                                                 onTap: () {
+
                                                   setState(() {
                                                     if (data.data[index]
                                                             .jumlah ==
@@ -220,7 +288,7 @@ class _KeranjangState extends State<Keranjang> {
                                                               .harga *
                                                           data.data[index]
                                                               .jumlah;
-                                                    }
+                                                    }// jika jumlah > 1 maka bisa di kurangi
                                                   }); // untuk menghapus item dari keranjang dan menghitung total harga yang dibeli dari keranjang yang dihapus dan mengubah total harga yang dibeli menjadi 0 jika jumlah item di keranjang menjadi 0
                                                 },
                                                 child: Container(
@@ -241,23 +309,41 @@ class _KeranjangState extends State<Keranjang> {
                                           ),
                                         ),
                                         IconButton(
-                                            onPressed: () async {
-                                              Uri url = Uri.parse(
-                                                  "$baseUrl/keranjang/delete/${data.data[index].id}");
-                                              SharedPreferences storage =
-                                                  await SharedPreferences
-                                                      .getInstance();
-                                              headers["Authorization"] =
-                                                  "Bearer ${storage.getString("token")}";
-                                              final res = await http.delete(url,
-                                                  headers: headers);
-                                              if (res.statusCode == 200) {
-                                                print("berhasil");
-                                              } else {
-                                                print(res.statusCode);
-                                                print(res.body);
-                                                print("gagal");
-                                              }
+                                            onPressed: () {
+                                              Alert(
+                                                context: context,
+                                                type: AlertType.warning,
+                                                title: "Hapus Item",
+                                                desc:
+                                                    "Apakah anda yakin ingin menghapus item ini dari keranjang?",
+                                                buttons: [
+                                                  DialogButton(
+                                                    child: Text(
+                                                      "tidak",
+                                                      style: TextStyle(
+                                                          color: Colors.white,
+                                                          fontSize: 14),
+                                                    ),
+                                                    onPressed: () =>
+                                                        Navigator.pop(
+                                                            context),
+                                                  ),
+                                                  DialogButton(
+                                                    child: Text(
+                                                      "yes",
+                                                      style: TextStyle(
+                                                          color: Colors.white,
+                                                          fontSize: 14),
+                                                    ),
+                                                    onPressed: () {
+                                                      deleteKeranjang(
+                                                          data.data[index].id);
+                                                          Navigator.pop(context);
+                                                    },
+                                                  )
+                                                ],
+                                              ).show();
+                                           
                                             },
                                             icon: Icon(Icons.delete))
                                       ],
@@ -298,26 +384,34 @@ class _KeranjangState extends State<Keranjang> {
                   ),
                   Padding(
                     padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
-                    child: ElevatedButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) =>
-                                  Pemesanan(data: data, total: total)),
-                        );
-                      },
-                      style: TextButton.styleFrom(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20),
+                    child: Container(
+                        width: 450,
+                    height: 50,
+                    decoration: BoxDecoration(
+                      color: Color(0xFF700BEF),
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                      child: TextButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    Pemesanan(data: data, total: total)),
+                          );
+                        },
+                        style: TextButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20),
+                          ),
                         ),
-                      ),
-                      child: Text(
-                        'Checkout',
-                        style: TextStyle(
-                            fontFamily: 'poppins',
-                            fontSize: 30,
-                            color: Colors.white),
+                        child: Text(
+                          'Checkout',
+                          style: TextStyle(
+                              fontFamily: 'poppins',
+                              fontSize: 30,
+                              color: Colors.white),
+                        ),
                       ),
                     ),
                   ),
@@ -330,3 +424,6 @@ class _KeranjangState extends State<Keranjang> {
     );
   }
 }
+
+
+//deleteKeranjang(data.data[index].id);

@@ -24,61 +24,60 @@ class _TransaksiPageState extends State<TransaksiPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: Row(
-        mainAxisSize: MainAxisSize.max,
-        children: [
-          Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(10, 15, 0, 0),
-            child: InkWell(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => Home()),
-                );
-              },
-              child: Container(
-                width: 50,
-                height: 50,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  image: DecorationImage(
-                    fit: BoxFit.cover,
-                    image: Image.asset(
-                      'assets/images/kembali.png',
-                    ).image,
-                  ),
+    appBar: AppBar(
+        backgroundColor: Colors.white,
+        leading: Padding(
+          padding: EdgeInsetsDirectional.fromSTEB(10, 15, 0, 0),
+          child: InkWell(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => Home()),
+              );
+            },
+            child: Container(
+              width: 50,
+              height: 50,
+              decoration: BoxDecoration(
+                color: Color.fromARGB(0, 255, 255, 255),
+                image: DecorationImage(
+                  fit: BoxFit.cover,
+                  image: Image.asset(
+                    'assets/images/kembali.png',
+                  ).image,
                 ),
               ),
             ),
           ),
-          Align(
-            alignment: AlignmentDirectional(0.15, 0.05),
-            child: Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(190, 5, 0, 0),
-              child: Container(
-                width: 160,
-                height: 40,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                ),
-                child: Align(
-                  alignment: AlignmentDirectional(-0.25, 0),
-                  child: Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(1, 0, 0, 0),
-                    child: Text(
-                      'Transaksi',
-                      style: TextStyle(
-                        fontFamily: 'Merienda One',
-                        fontSize: 30,
-                        fontWeight: FontWeight.bold,
-                      ),
+        ),
+        title: Align(
+          alignment: Alignment.centerLeft,
+          child: Padding(
+            padding: EdgeInsetsDirectional.fromSTEB(190, 5, 0, 0),
+            child: Container(
+              width: 160,
+              height: 40,
+              decoration: BoxDecoration(
+                color: Color.fromARGB(0, 255, 255, 255),
+              ),
+              child: Align(
+                alignment: AlignmentDirectional(-0.25, 0),
+                child: Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(1, 0, 0, 0),
+                  child: Text(
+                    'Transaksi',
+                    style: TextStyle(
+                      fontFamily: 'Merienda One',
+                      fontSize: 30,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
                     ),
                   ),
                 ),
               ),
             ),
           ),
-        ],
+        ),
       ),
       key: scaffoldKey,
       backgroundColor: Colors.white,
@@ -103,6 +102,7 @@ class _TransaksiPageState extends State<TransaksiPage> {
   }
 
   Widget _builder(Transaksi data) {
+    if(data.data.isEmpty) return Center(child: Text("kosong"),);
     return SafeArea(
       child: SingleChildScrollView(
         child: Column(

@@ -6,11 +6,12 @@ import 'package:betta_fish/model/popular_model.dart';
 import 'package:betta_fish/model/rekomedasi_model.dart';
 import 'package:betta_fish/model/search_model.dart';
 import 'package:betta_fish/model/transaksi_model.dart';
+import 'package:betta_fish/model/usermodel.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 String baseUrl =
-    "http://192.168.2.23:5000"; // untuk localhost kita pakai ip addressnya localhost
+    "http://192.168.100.152:5000"; // untuk localhost kita pakai ip addressnya localhost
 Map<String, String> headers = {
   "Content-Type": "application/json",
   "Authorization": ""
@@ -120,11 +121,13 @@ class ApiService {
     }
   }
 
-  Future addToCart(int id) async {
+  Future addToCart(int id,int total) async {
     Uri url = Uri.parse("$baseUrl/keranjang/add/$id");
     SharedPreferences storage = await SharedPreferences.getInstance();
     headers["Authorization"] = "Bearer ${storage.getString("token")}";
-    final res = await http.post(url, headers: headers);
+    final res = await http.post(url,body: jsonEncode({
+      "jumlah":total
+    }), headers: headers);
     if (res.statusCode == 200) {
       print(res.statusCode);
       return true;
@@ -153,7 +156,22 @@ class ApiService {
     if (res.statusCode == 200) {
       return rekomendasiFromJson(res.body);
     } else {
+      print(res.body);
       return false;
     }
   }
+// mendapatkan data yg sedang login
+  Future getUser() async {
+    Uri url = Uri.parse("$baseUrl/user/get");
+    SharedPreferences storage = await SharedPreferences.getInstance();
+    headers["Authorization"] = "Bearer ${storage.getString("token")}";
+    final res = await http.get(url, headers: headers);
+    if (res.statusCode == 200) {
+      return userModelFromJson(res.body);
+    } else {
+      print(res.body);
+      return false;
+    }
+  }
+  
 }

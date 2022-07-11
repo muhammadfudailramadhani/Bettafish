@@ -37,11 +37,13 @@ class Datum {
         required this.deskripsi,
         required this.createdAt,
         required this.updatedAt,
+        required this.totalBarang
     });
 
     int id;
     String namaBarang;
     int harga;
+    int totalBarang;
     String fotoBarang;
     String kategori;
     int height;
@@ -55,6 +57,7 @@ class Datum {
         id: json["id"],
         namaBarang: json["nama_barang"],
         harga: json["harga"],
+        totalBarang: json["totalBarang"],
         fotoBarang: json["foto_barang"],
         kategori: json["kategori"],
         height: json["height"],
@@ -69,6 +72,7 @@ class Datum {
         "id": id,
         "nama_barang": namaBarang,
         "harga": harga,
+        "totalBarang": totalBarang,
         "foto_barang": fotoBarang,
         "kategori": kategori,
         "height": height,
